@@ -69,9 +69,8 @@ namespace Dagligdagen
         /// <param name="iD"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public BuyTransaction(decimal price, string productName, decimal discountAmount, uint iD, DateTime date, int amount, ProductType productType) : base (productType, price, date, iD)
+        public BuyTransaction(decimal price, Product product, decimal discountAmount, uint iD, DateTime date, int amount, string comment) : base (product, price, date, iD, comment)
         {
-            ProductName = productName;
             DiscountAmount = discountAmount;
             Amount = amount;
         }

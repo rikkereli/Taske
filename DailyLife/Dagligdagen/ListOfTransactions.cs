@@ -12,11 +12,20 @@ namespace Dagligdagen
     {
 
         private List<BuyTransaction> listOfTransactions = new List<BuyTransaction>();
-        public void AddTransaction(decimal price, string productName, decimal discountAmount, DateTime date, ProductType productType, int amount)
+        /// <summary>
+        /// Add a tranaction to the list of transactions
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="product"></param>
+        /// <param name="discountAmount"></param>
+        /// <param name="date"></param>
+        /// <param name="amount"></param>
+        public void AddTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment)
         {
             try
             {
-                listOfTransactions.Add(new BuyTransaction(price, productName, discountAmount, iD, date, amount, productType));
+                //TODO make the add transaction be different if it is an insert
+                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, iD, date, amount, comment));
                 iD++;
             }
             //Will probably implement this later. Don't know what to put here now

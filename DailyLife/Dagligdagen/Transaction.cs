@@ -5,9 +5,12 @@ using System.Text;
 
 namespace Dagligdagen
 {
+    /// <summary>
+    /// A common for all types of transactiona
+    /// </summary>
     public abstract class Transaction
     {
-        public Transaction(Product product, decimal amountOfMoney, DateTime date, uint iD)
+        public Transaction(Product product, decimal amountOfMoney, DateTime date, uint iD, string comment)
         {
             AmountOfMoney = amountOfMoney;
             Date = date;

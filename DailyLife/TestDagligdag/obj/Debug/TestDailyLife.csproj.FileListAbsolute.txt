@@ -1,0 +1,8 @@
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\TestDagligdag.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\TestDagligdag.pdb
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\Dagligdagen.exe
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\Dagligdagen.pdb
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDailyLife.csprojResolveAssemblyReference.cache
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDagligdag.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDagligdag.pdb

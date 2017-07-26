@@ -1,3 +1,3 @@
-ID;Product;Date;Price;DiscountAmount
-1;Kage;23/07/2017;10;0
-2;Mælk;23/07/2017;5;2
+ID;ProductID;Date;Price;DiscountAmount;Description
+1;2;23/07/2017/ 00:00:00;10;0;Mælk
+2;1;23/07/2017 12:22:12;5;2;Kage

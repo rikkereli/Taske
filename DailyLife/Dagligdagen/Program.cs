@@ -10,6 +10,10 @@ namespace Dagligdagen
     {
         static void Main(string[] args)
         {
+            string wrongYearFormat = "25/07/1721 12:30:05";
+
+            Console.WriteLine(ReadFromFiles.StringToDateTime(wrongYearFormat));
+            Console.ReadKey();
         }
     }
 }
