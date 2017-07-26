@@ -20,7 +20,7 @@ namespace Dagligdagen
         /// <param name="discountAmount"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public void AddTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment)
+        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment)
         {
             try
             {
@@ -28,12 +28,35 @@ namespace Dagligdagen
                 listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, iD, date, amount, comment));
                 iD++;
             }
-            //Will probably implement this later. Don't know what to put here now
+            //TODO Will probably implement this later. Don't know what to put here now
             catch (Exception)
             {
 
             }
         }
+        /// <summary>
+        /// Get the number of transactions on the list
+        /// </summary>
+        public int NumberOfTransactions
+        {
+            get { return listOfTransactions.Count; }
+        }
 
+        /// <summary>
+        /// Find a transaction by ID in the list of transactions
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public Transaction FindTransactionByID(uint ID)
+        {
+            foreach (Transaction transaction in listOfTransactions)
+            {
+                if (transaction.ID == ID)
+                {
+                    return transaction;
+                }
+            }
+            return null;
+        }
     }
 }

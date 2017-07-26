@@ -31,7 +31,30 @@ namespace Dagligdagen
             //If no product is found
             return null;
         }
-
-
+        /// <summary>
+        /// TODO implement this proporly. Make sure you seach on both primary name and name synonymes
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Product FindProductByName(string name)
+        {
+            foreach (Product product in listOfProducts)
+            {
+                if (name == product.PrimaryProductName)
+                {
+                    //returns the product with the correct ID
+                    return product;
+                }
+            }
+            //If no product is found
+            return null;
+        }
+        /// <summary>
+        /// Resturns the number of products in the list of products
+        /// </summary>
+        public int NumberOfProducts
+        {
+            get { return listOfProducts.Count(); }
+        }
     }
 }

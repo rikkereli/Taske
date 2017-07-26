@@ -11,5 +11,6 @@ namespace Dagligdagen
         /// Make sure you can make unique iD;
         /// </summary>
         protected uint iD = 1;
+
     }
 }

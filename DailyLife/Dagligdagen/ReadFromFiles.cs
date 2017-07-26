@@ -21,8 +21,10 @@ namespace Dagligdagen
         /// <returns></returns>
         public static ListOfTransactions ReadFromTransactionFileToListOfTransactions(string path, ListOfProducts products)
         {
+            //The list to be returned
+            ListOfTransactions transactions = new ListOfTransactions();
             //The number of informationslots in te list
-            int numberOfInformationslots = 6;
+            int numberOfInformationslots = 7;
             //Read the text from the files into an array of strings, so every transaction has a entrance
             string[] lines = System.IO.File.ReadAllLines(path);
             //Makes sure the first describing line is not translated.
@@ -48,6 +50,8 @@ namespace Dagligdagen
                         decimal discountAmount;
                         //The product description 
                         string comment;
+                        //The amount of products bought
+                        int amountOfProducts;
 
                         try
                         {
@@ -62,18 +66,23 @@ namespace Dagligdagen
                             price = decimal.Parse(transactionDetails[3]);
                             //The fifth is the discount amount
                             discountAmount = decimal.Parse(transactionDetails[4]);
+                            //The sixth one is the amount of products bought in this transaction
+                            amountOfProducts = int.Parse(transactionDetails[5]);
                             //The last one is an voluntary comment
                             comment = transactionDetails[5];
+
+                            //Here I add the transaction to the list
+                            transactions.AddBuyTransaction(price, product, discountAmount, transactiondate, amountOfProducts, comment);
                         }
                         catch
                         {
-
+                            //TODO implement exception handeling 
                         }
                     }
                     else
                     {
                         //Makes sure the line is added to a list of broken transactions
-                        throw new FormatException(line);
+                        throw new FormatException($"The number of segments in the line is wrong. It should be {numberOfInformationslots} but it is {transactionDetails.Length} \n The line is {line}");
                     }
                 }
                 else
@@ -83,7 +92,7 @@ namespace Dagligdagen
                 }
             }
 
-            return null;
+            return transactions;
         }
         /// <summary>
         /// Convert a sting in format DD/MT/YYYY HH:MM:SS to datetime
@@ -125,7 +134,7 @@ namespace Dagligdagen
             //Everything that does so this does not work, is a wrong format. Therefore I will throw a format exception
             catch (Exception)
             {
-                throw new FormatException(dateTime);
+                throw new FormatException(dateTime + " StringToDateTime");
             }
         }
     }
