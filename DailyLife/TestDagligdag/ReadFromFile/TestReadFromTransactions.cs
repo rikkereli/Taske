@@ -28,8 +28,8 @@ namespace TestDagligdag
         public void TestIfRightAmountOfLines()
         {
             ListOfProducts listOfProducts = new ListOfProducts();
-            listOfProducts.AddProduct("Mælk", UnitType.l, ProductType.Food);
-            listOfProducts.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            listOfProducts.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
+            listOfProducts.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
             ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
             Assert.AreEqual(transactions.NumberOfTransactions, 2);
         }
@@ -40,10 +40,10 @@ namespace TestDagligdag
         public void TestIfRightTransactionsIsMade()
         {
             ListOfProducts listOfProducts = new ListOfProducts();
-            listOfProducts.AddProduct("Maelk", UnitType.l, ProductType.Food);
-            listOfProducts.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            listOfProducts.AddProductFromStartup("Maelk", UnitType.l, ProductType.Food, 1);
+            listOfProducts.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
             ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
-            Assert.AreEqual(transactions.FindTransactionByID(1).Product.ID, 2);
+            Assert.AreEqual(transactions.FindTransactionByID(1).AmountOfMoney, 10);
         }
     }
 

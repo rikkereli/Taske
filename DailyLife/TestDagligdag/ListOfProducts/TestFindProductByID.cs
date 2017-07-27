@@ -18,8 +18,8 @@ namespace TestDagligdag
         {
             ListOfProducts productlist = new ListOfProducts();
 
-            productlist.AddProduct("Mælk", UnitType.l, ProductType.Food);
-            productlist.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
+            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack,2);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -34,8 +34,8 @@ namespace TestDagligdag
         {
             ListOfProducts productlist = new ListOfProducts();
 
-            productlist.AddProduct("Mælk", UnitType.l, ProductType.Food);
-            productlist.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
+            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -49,8 +49,8 @@ namespace TestDagligdag
         {
             ListOfProducts productlist = new ListOfProducts();
 
-            productlist.AddProduct("Mælk", UnitType.l, ProductType.Food);
-            productlist.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
+            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack,2);
 
             Assert.AreEqual(productlist.FindProductByID(1).PrimaryProductName, "Mælk");
         }

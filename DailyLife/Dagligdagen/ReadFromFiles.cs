@@ -55,16 +55,52 @@ namespace Dagligdagen
 
                         try
                         {
-                            //The first enterance contains the ID
-                            transactionID = UInt32.Parse(transactionDetails[0]);
-                            //The second contains the ID. This will be used to find the product
-                            uint productID = UInt32.Parse(transactionDetails[1]);
-                            product = products.FindProductByID(productID);
-                            //The third contains the date
-                            transactiondate = StringToDateTime(transactionDetails[2]);
-                            //The fourth is the price
-                            price = decimal.Parse(transactionDetails[3]);
-                            //The fifth is the discount amount
+                            try
+                            {
+                                //The first enterance contains the ID
+                                transactionID = UInt32.Parse(transactionDetails[0]);
+                            }
+                            catch (FormatException)
+                            {
+                                throw new FormatException($"The format of the transactionID {transactionDetails[0]} is invalid. ");
+                            }
+                            try
+                            {
+                                //The second contains the ID. This will be used to find the product
+                                uint productID = UInt32.Parse(transactionDetails[1]);
+                                product = products.FindProductByID(productID);
+                                if (product == null)
+                                {
+                                    throw new ElementDoesNotExistException($"Element with ID {productID} does not excist");
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                throw new FormatException($"The format of the prodcut ID {transactionDetails[1]} is invalid");
+                            }
+                            catch (ElementDoesNotExistException)
+                            {
+                                throw;
+                            }
+                            try
+                            {
+                                //The third contains the date
+                                transactiondate = StringToDateTime(transactionDetails[2]);
+                            }
+                            catch
+                            {
+                                throw new FormatException($"The transactiondate {transactionDetails[2]} is not valid");
+                            }
+                            try
+                            {
+                                //The fourth is the price
+                                price = decimal.Parse(transactionDetails[3]);
+                            }
+                            catch
+                            {
+                                throw new FormatException($"The string {transactionDetails[3]} is not a valid decimal number, and can therefore not represent a price");
+                            }
+                                //The fifth is the discount amount
                             discountAmount = decimal.Parse(transactionDetails[4]);
                             //The sixth one is the amount of products bought in this transaction
                             amountOfProducts = int.Parse(transactionDetails[5]);

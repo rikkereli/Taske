@@ -26,7 +26,7 @@ namespace TestDagligdag
         public void SeeIfProductIsAdded()
         {
             ListOfProducts productList = new ListOfProducts();
-            productList.AddProduct("Mælk", UnitType.l, ProductType.Snack);
+            productList.AddProductFromStartup("Mælk", UnitType.l, ProductType.Snack, 1);
             Assert.AreEqual(productList.NumberOfProducts, 1);
         }
     }
