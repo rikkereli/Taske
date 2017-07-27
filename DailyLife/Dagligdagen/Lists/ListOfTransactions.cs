@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,40 @@ namespace Dagligdagen
     /// <summary>
     /// Make sure the list of transactions is secure, and that every transaction has an unique ID 
     /// </summary>
-    public class ListOfTransactions : List
+    public class ListOfTransactions : List, IEnumerable<Transaction>
     {
+        /// <summary>
+        /// Makes it possible to add a list when construction the list, so there is no problems with ID
+        /// </summary>
+        /// <param name="list"></param>
+        public ListOfTransactions(List<Transaction> listOfTransactions)
+        {
+            foreach (Transaction transaction in listOfTransactions)
+            {
+                //So there is an unique iD
+                foreach (Transaction transactionAlreadyAdded in this.listOfTransactions)
+                {
+                    if (transactionAlreadyAdded.ID == iD)
+                    {
+                        throw new IDAlreadyTakenException($"The product ID {iD} is already taken");
+                    }
+                }
 
-        private List<BuyTransaction> listOfTransactions = new List<BuyTransaction>();
+                this.listOfTransactions.Add(transaction);
+                //Make sure that two ID's will never be the same
+                if (transaction.ID >= this.iD)
+                {
+                    this.iD = transaction.ID + 1;
+                }
+            }
+        }
+        /// <summary>
+        /// Makes it possible to not add a list when construction a list of transactions
+        /// </summary>
+        public ListOfTransactions() { }
+
+        private List<Transaction> listOfTransactions = new List<Transaction>();
+
         /// <summary>
         /// Add a tranaction to the list of transactions
         /// </summary>
@@ -20,12 +51,12 @@ namespace Dagligdagen
         /// <param name="discountAmount"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment)
+        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName)
         {
             try
             {
                 //TODO make the add transaction be different if it is an insert
-                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, iD, date, amount, comment));
+                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName));
                 iD++;
             }
             //TODO Will probably implement this later. Don't know what to put here now
@@ -57,6 +88,16 @@ namespace Dagligdagen
                 }
             }
             return null;
+        }
+
+        public IEnumerator<Transaction> GetEnumerator()
+        {
+            return listOfTransactions.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return listOfTransactions.GetEnumerator();
         }
     }
 }

@@ -77,5 +77,14 @@ namespace Dagligdagen
                 }
             }
         }
+
+        public static string TableExplanation()
+        {
+            return $"ID | Product name | Product type";
+        }
+        public override string ToString()
+        {
+            return $"{iD} | {primaryProductName} | {productType}";
+        }
     }
 }

@@ -7,19 +7,10 @@ using System.Threading.Tasks;
 
 namespace Dagligdagen
 {
-    public class ListOfProducts : List
+    public class ListOfProducts : List, IEnumerable<Product>
     {
         /// <summary>
-        /// The list containing all the products
-        /// </summary>
-        private List<Product> listOfProducts = new List<Product>();
-        //Send back a readonly list
-        public IEnumerable<Product>  ProductList
-        {
-            get { return listOfProducts; }
-        }
-        /// <summary>
-        /// Make the product so it has it's original ID
+        /// Makes it possible to add a list of products as a startup. 
         /// </summary>
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
@@ -41,6 +32,17 @@ namespace Dagligdagen
                 this.iD = iD + 1;
             }
         }
+
+        /// <summary>
+        /// The list containing all the products
+        /// </summary>
+        private List<Product> listOfProducts = new List<Product>();
+        //Send back a readonly list
+        public IEnumerable<Product>  ProductList
+        {
+            get { return listOfProducts; }
+        }
+
         /// <summary>
         /// Add new product on the list
         /// </summary>
@@ -50,6 +52,7 @@ namespace Dagligdagen
         public void AddProduct(string primaryProductName, UnitType typeOfUnit, ProductType productType)
         {
             listOfProducts.Add(new Product(iD, primaryProductName, typeOfUnit, productType));
+            iD++;
         }
         public Product FindProductByID(uint ID)
         {
@@ -82,6 +85,17 @@ namespace Dagligdagen
             //If no product is found
             return null;
         }
+
+        public IEnumerator<Product> GetEnumerator()
+        {
+            return listOfProducts.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return listOfProducts.GetEnumerator();
+        }
+
         /// <summary>
         /// Resturns the number of products in the list of products
         /// </summary>

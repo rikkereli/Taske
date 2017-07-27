@@ -18,7 +18,7 @@ namespace Dagligdagen
             set
             {
                 //Makes sure that the amount is positive
-                if (value <= 0)
+                if (value >= 0)
                 {
                     price = value;
                 }
@@ -59,6 +59,14 @@ namespace Dagligdagen
             }
         }
 
+        private string productName;
+        /// <summary>
+        /// Is made so you still will be able to find out what the product was, even if there is something wrong with the ID system
+        /// </summary>
+        public string ProductName
+        {
+            get { return productName; }
+        }
 
         /// <summary>
         /// Standard constructor
@@ -69,10 +77,11 @@ namespace Dagligdagen
         /// <param name="iD"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public BuyTransaction(decimal price, Product product, decimal discountAmount, uint iD, DateTime date, int amount, string comment) : base (product, price, date, iD, comment)
+        public BuyTransaction(decimal price, Product product, decimal discountAmount, uint iD, DateTime date, int amount, string comment, string productName) : base (product, price, date, iD, comment)
         {
             DiscountAmount = discountAmount;
             Amount = amount;
+            this.productName = ProductName;
         }
     }
 }

@@ -14,7 +14,9 @@ namespace Dagligdagen
         {
             AmountOfMoney = amountOfMoney;
             Date = date;
-            ID = iD;
+            this.iD = iD;
+            this.product = product;
+            this.comment = comment;
         }
         private uint iD;
         /// <summary>
@@ -23,10 +25,6 @@ namespace Dagligdagen
         public uint ID
         {
             get { return iD; }
-            set
-            {
-                iD = ID;
-            }
         }
         protected Product product;
         /// <summary>
@@ -40,6 +38,7 @@ namespace Dagligdagen
                 product = value;
             }
         }
+
         /// <summary>
         /// The amount of money used in each transaction 
         /// </summary>
@@ -63,6 +62,32 @@ namespace Dagligdagen
                     throw new ArgumentNullException("The date of a transaction can't be null");
                 }
             }
+        }
+
+        protected string comment;
+
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (value != null)
+                {
+                    comment += $" {value}";
+                }
+            }
+        }
+        /// <summary>
+        /// To make it easier to understand the ToString
+        /// </summary>
+        /// <returns></returns>
+        public static string TableExplanation()
+        {
+            return "ID | Product name | Amount of money | Date | Comment";
+        }
+        public override string ToString()
+        {
+            return $"{iD} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
         }
 
     }
