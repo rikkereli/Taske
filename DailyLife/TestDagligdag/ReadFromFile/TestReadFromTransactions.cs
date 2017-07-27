@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dagligdagen;
 using System.IO;
+using System.Collections.Generic;
 
 namespace TestDagligdag
 {
@@ -27,9 +28,8 @@ namespace TestDagligdag
         [TestMethod]
         public void TestIfRightAmountOfLines()
         {
-            ListOfProducts listOfProducts = new ListOfProducts();
-            listOfProducts.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
-            listOfProducts.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
+            List<Product> products = new List<Product>() { new Product(1,"Mælk",UnitType.l,ProductType.Food), new Product(2,"Kage",UnitType.kg,ProductType.Snack)};
+            ListOfProducts listOfProducts = new ListOfProducts(products);
             ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
             Assert.AreEqual(transactions.NumberOfTransactions, 2);
         }
@@ -39,9 +39,9 @@ namespace TestDagligdag
         [TestMethod]
         public void TestIfRightTransactionsIsMade()
         {
-            ListOfProducts listOfProducts = new ListOfProducts();
-            listOfProducts.AddProductFromStartup("Maelk", UnitType.l, ProductType.Food, 1);
-            listOfProducts.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            ListOfProducts listOfProducts = new ListOfProducts(products);
+
             ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
             Assert.AreEqual(transactions.FindTransactionByID(1).AmountOfMoney, 10);
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dagligdagen
 {
-    public abstract class List 
+    public abstract class ListType 
     {
         /// <summary>
         /// Make sure you can make unique iD;

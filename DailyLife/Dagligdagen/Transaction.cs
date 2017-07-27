@@ -10,6 +10,7 @@ namespace Dagligdagen
     /// </summary>
     public abstract class Transaction
     {
+        #region Constructor
         public Transaction(Product product, decimal amountOfMoney, DateTime date, uint iD, string comment)
         {
             AmountOfMoney = amountOfMoney;
@@ -18,6 +19,10 @@ namespace Dagligdagen
             this.product = product;
             this.comment = comment;
         }
+        #endregion
+
+        #region Proporty
+        #region ID
         private uint iD;
         /// <summary>
         /// The transaction ID
@@ -26,6 +31,9 @@ namespace Dagligdagen
         {
             get { return iD; }
         }
+        #endregion
+
+        #region Product
         protected Product product;
         /// <summary>
         /// The type of product
@@ -38,12 +46,16 @@ namespace Dagligdagen
                 product = value;
             }
         }
+        #endregion
 
+        #region AmountOfMoney
         /// <summary>
         /// The amount of money used in each transaction 
         /// </summary>
         public abstract decimal AmountOfMoney { get; set; }
+        #endregion
 
+        #region Date
         protected DateTime date;
         /// <summary>
         /// The date of the transaction
@@ -63,9 +75,13 @@ namespace Dagligdagen
                 }
             }
         }
+        #endregion
 
+        #region Comment
         protected string comment;
-
+        /// <summary>
+        /// An optional comment the user can make
+        /// </summary>
         public string Comment
         {
             get { return comment; }
@@ -77,6 +93,10 @@ namespace Dagligdagen
                 }
             }
         }
+        #endregion
+        #endregion
+
+        #region String 
         /// <summary>
         /// To make it easier to understand the ToString
         /// </summary>
@@ -89,6 +109,6 @@ namespace Dagligdagen
         {
             return $"{iD} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
         }
-
+        #endregion
     }
 }

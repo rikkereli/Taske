@@ -8,6 +8,8 @@ namespace Dagligdagen
 {
     class BuyTransaction : Transaction
     {
+        #region Proporties
+        #region Price
         private decimal price;
         /// <summary>
         /// The price of each product
@@ -24,7 +26,8 @@ namespace Dagligdagen
                 }
             }
         }
-
+        #endregion
+        #region DiscoundAmount
         private decimal discountAmount;
         /// <summary>
         /// The discount amount of the item 
@@ -41,6 +44,8 @@ namespace Dagligdagen
                 }
             }
         }
+        #endregion
+        #region Amount
         private int amount;
         public int Amount
         {
@@ -58,7 +63,8 @@ namespace Dagligdagen
                 }
             }
         }
-
+        #endregion
+        #region ProductName
         private string productName;
         /// <summary>
         /// Is made so you still will be able to find out what the product was, even if there is something wrong with the ID system
@@ -67,7 +73,10 @@ namespace Dagligdagen
         {
             get { return productName; }
         }
+        #endregion
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Standard constructor
         /// </summary>
@@ -83,5 +92,6 @@ namespace Dagligdagen
             Amount = amount;
             this.productName = ProductName;
         }
+        #endregion
     }
 }

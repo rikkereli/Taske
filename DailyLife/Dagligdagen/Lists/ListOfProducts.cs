@@ -7,42 +7,67 @@ using System.Threading.Tasks;
 
 namespace Dagligdagen
 {
-    public class ListOfProducts : List, IEnumerable<Product>
+    public class ListOfProducts : ListType, IEnumerable<Product>
     {
+        #region constructors
         /// <summary>
         /// Makes it possible to add a list of products as a startup. 
         /// </summary>
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
         /// <param name="productType"></param>
-        public void AddProductFromStartup(string primaryProductName, UnitType typeOfUnit, ProductType productType, uint iD)
+        public ListOfProducts(List<Product> products)
         {
-            //So there is an unique iD
-            foreach (Product product in listOfProducts)
+            foreach (Product product in products)
             {
-                if (product.ID == iD)
+                //So there is a unique iD
+                foreach (Product productInAlreadyMadeList in this.listOfProducts)
                 {
-                    throw new IDAlreadyTakenException($"The product ID {iD} is already taken");
+                    if (productInAlreadyMadeList.ID == product.ID)
+                    {
+                        throw new IDAlreadyTakenException($"The product ID {iD} is already taken");
+                    }
+                }
+                listOfProducts.Add(product);
+
+                if (product.ID >= this.iD)
+                {
+                    this.iD = iD + 1;
                 }
             }
-            listOfProducts.Add(new Product(iD, primaryProductName, typeOfUnit, productType));
-
-            if (iD >= this.iD)
-            {
-                this.iD = iD + 1;
-            }
         }
+        /// <summary>
+        /// Makes it possible to make a new list without neding 
+        /// </summary>
+        public ListOfProducts()
+        {
 
+        }
+        #endregion
+
+        #region Fields and proporties 
         /// <summary>
         /// The list containing all the products
         /// </summary>
         private List<Product> listOfProducts = new List<Product>();
+        #endregion
+
+        #region Info
         //Send back a readonly list
         public IEnumerable<Product>  ProductList
         {
             get { return listOfProducts; }
         }
+        /// <summary>
+        /// Resturns the number of products in the list of products
+        /// </summary>
+        public int NumberOfProducts
+        {
+            get { return listOfProducts.Count(); }
+        }
+        #endregion
 
+        #region Change list
         /// <summary>
         /// Add new product on the list
         /// </summary>
@@ -54,6 +79,9 @@ namespace Dagligdagen
             listOfProducts.Add(new Product(iD, primaryProductName, typeOfUnit, productType));
             iD++;
         }
+        #endregion
+
+        #region Seach
         public Product FindProductByID(uint ID)
         {
             foreach (Product product in listOfProducts)
@@ -85,7 +113,9 @@ namespace Dagligdagen
             //If no product is found
             return null;
         }
+        #endregion
 
+        #region Ienumerable
         public IEnumerator<Product> GetEnumerator()
         {
             return listOfProducts.GetEnumerator();
@@ -95,13 +125,8 @@ namespace Dagligdagen
         {
             return listOfProducts.GetEnumerator();
         }
+        #endregion
 
-        /// <summary>
-        /// Resturns the number of products in the list of products
-        /// </summary>
-        public int NumberOfProducts
-        {
-            get { return listOfProducts.Count(); }
-        }
+
     }
 }

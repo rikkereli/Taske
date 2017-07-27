@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dagligdagen;
+using System.Collections.Generic;
 
 namespace TestDagligdag
 {
@@ -16,10 +17,9 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDWorksByName()
         {
-            ListOfProducts productlist = new ListOfProducts();
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
 
-            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
-            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack,2);
+            ListOfProducts productlist = new ListOfProducts(products);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -32,10 +32,9 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDWorksByProductType()
         {
-            ListOfProducts productlist = new ListOfProducts();
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
 
-            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
-            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack, 2);
+            ListOfProducts productlist = new ListOfProducts(products);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -47,10 +46,8 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDReturnsNullIfProductDoesNotExist()
         {
-            ListOfProducts productlist = new ListOfProducts();
-
-            productlist.AddProductFromStartup("Mælk", UnitType.l, ProductType.Food, 1);
-            productlist.AddProductFromStartup("Kage", UnitType.kg, ProductType.Snack,2);
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            ListOfProducts productlist = new ListOfProducts(products);
 
             Assert.AreEqual(productlist.FindProductByID(1).PrimaryProductName, "Mælk");
         }

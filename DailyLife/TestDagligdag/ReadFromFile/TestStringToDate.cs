@@ -55,7 +55,9 @@ namespace TestDagligdag
             }
             Assert.AreEqual(formatExceptionIsCast, true);
         }
-        //Test when the month is invalid
+        /// <summary>
+        /// Test when the month is invalid
+        /// </summary>
         [TestMethod]
         public void TestWhenInvalidMonth()
         {
@@ -76,7 +78,9 @@ namespace TestDagligdag
             }
             Assert.AreEqual(exceptionIsCast, true);
         }
-        //Test when component is negative
+        /// <summary>
+        /// Test when component is negative
+        /// </summary>
         [TestMethod]
         public void TestWhenComponentIsNegative()
         {
@@ -97,7 +101,9 @@ namespace TestDagligdag
             }
             Assert.AreEqual(exceptionIsCast, true);
         }
-        //Test when wrong separators
+        /// <summary>
+        /// Test when wrong separators
+        /// </summary>
         [TestMethod]
         public void TestWhenWrongSeparators()
         {

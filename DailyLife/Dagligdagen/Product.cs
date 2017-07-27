@@ -10,6 +10,19 @@ namespace Dagligdagen
     /// </summary>
     public class Product
     {
+        #region Constructor
+        public Product(uint iD, string primaryProductName, UnitType typeOfunit, ProductType productType)
+        {
+            this.iD = iD;
+            PrimaryProductName = primaryProductName;
+            this.typeOfunit = typeOfunit;
+            this.productType = productType;
+        }
+        #endregion
+
+        #region Proporties
+
+        #region ProductType
         private ProductType productType;
         /// <summary>
         /// The product's type
@@ -18,6 +31,9 @@ namespace Dagligdagen
         {
             get { return productType; }
         }
+        #endregion
+
+        #region UnitType
         private UnitType typeOfunit;
         /// <summary>
         /// The default type the product is messured in
@@ -26,13 +42,9 @@ namespace Dagligdagen
         {
             get { return TypeOfUnit; }
         }
-        public Product(uint iD, string primaryProductName, UnitType typeOfunit, ProductType productType)
-        {
-            this.iD = iD;
-            PrimaryProductName = primaryProductName;
-            this.typeOfunit = typeOfunit;
-            this.productType = productType;
-        }
+        #endregion
+
+        #region ID
         private uint iD;
         /// <summary>
         /// The unique ID for this product.
@@ -42,6 +54,9 @@ namespace Dagligdagen
         {
             get { return iD; }
         }
+        #endregion
+
+        #region ProductNames
         /// <summary>
         /// Because a product can have sevral names 
         /// </summary>
@@ -61,7 +76,6 @@ namespace Dagligdagen
                 throw new ArgumentNullException("A productname can't be null. AddProductName");
             }
         }
-
         private string primaryProductName;
         /// <summary>
         /// The name primarily used for the product
@@ -77,7 +91,11 @@ namespace Dagligdagen
                 }
             }
         }
+        #endregion
 
+        #endregion
+
+        #region String
         public static string TableExplanation()
         {
             return $"ID | Product name | Product type";
@@ -86,5 +104,6 @@ namespace Dagligdagen
         {
             return $"{iD} | {primaryProductName} | {productType}";
         }
+        #endregion
     }
 }

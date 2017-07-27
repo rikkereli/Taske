@@ -9,8 +9,9 @@ namespace Dagligdagen
     /// <summary>
     /// Make sure the list of transactions is secure, and that every transaction has an unique ID 
     /// </summary>
-    public class ListOfTransactions : List, IEnumerable<Transaction>
+    public class ListOfTransactions : ListType, IEnumerable<Transaction>
     {
+        #region constructor
         /// <summary>
         /// Makes it possible to add a list when construction the list, so there is no problems with ID
         /// </summary>
@@ -40,9 +41,13 @@ namespace Dagligdagen
         /// Makes it possible to not add a list when construction a list of transactions
         /// </summary>
         public ListOfTransactions() { }
-
+        #endregion
+        
+        #region Fields and proporties
         private List<Transaction> listOfTransactions = new List<Transaction>();
+        #endregion
 
+        #region ChangeList
         /// <summary>
         /// Add a tranaction to the list of transactions
         /// </summary>
@@ -65,6 +70,9 @@ namespace Dagligdagen
 
             }
         }
+        #endregion
+
+        #region Info
         /// <summary>
         /// Get the number of transactions on the list
         /// </summary>
@@ -73,6 +81,16 @@ namespace Dagligdagen
             get { return listOfTransactions.Count; }
         }
 
+        /// <summary>
+        /// Get a readonly copy of list
+        /// </summary>
+        public IEnumerable<Transaction> TransactionList
+        {
+            get { return listOfTransactions; }
+        }
+        #endregion
+
+        #region search
         /// <summary>
         /// Find a transaction by ID in the list of transactions
         /// </summary>
@@ -89,7 +107,9 @@ namespace Dagligdagen
             }
             return null;
         }
+        #endregion
 
+        #region IEnumarable
         public IEnumerator<Transaction> GetEnumerator()
         {
             return listOfTransactions.GetEnumerator();
@@ -99,5 +119,6 @@ namespace Dagligdagen
         {
             return listOfTransactions.GetEnumerator();
         }
+        #endregion
     }
 }

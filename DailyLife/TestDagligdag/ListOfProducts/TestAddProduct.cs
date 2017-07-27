@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dagligdagen;
+using System.Collections.Generic;
 
 namespace TestDagligdag
 {
@@ -25,8 +26,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductIsAdded()
         {
-            ListOfProducts productList = new ListOfProducts();
-            productList.AddProductFromStartup("Mælk", UnitType.l, ProductType.Snack, 1);
+            ListOfProducts productList = new ListOfProducts(new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food)});
             Assert.AreEqual(productList.NumberOfProducts, 1);
         }
     }

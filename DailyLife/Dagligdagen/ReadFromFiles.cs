@@ -10,13 +10,15 @@ namespace Dagligdagen
     /// </summary>
     public static class ReadFromFiles
     {
+        #region ProductFiles
         /// <summary>
         /// Takes the file with products and read it in to a list of products to use at runtime
         /// </summary>
         /// <returns></returns>
         public static ListOfProducts ReadFromProductfileToListOfProducts() { return null; }
+        #endregion
 
-        
+        #region InformationPlacements
         // The placements of the information in the transaction files, as it would be in an array. Makes it more flexible
         private static int transactionTypePlacementTransaction,
                            TransactioniDPlacementTransaction = 1,
@@ -27,7 +29,9 @@ namespace Dagligdagen
                            commentPlacementTransaction = 6,
                            discountAmountPlacementTransaction = 7,
                            amountOfProductsBoughtPlacementTransaction = 8;
+        #endregion
 
+        #region TransactionFiles
         /// <summary>
         /// Takes the file with transactions and reads them in to a list of transactions to use at runtime
         /// </summary>
@@ -187,6 +191,9 @@ namespace Dagligdagen
                 throw new FormatException("The product was not possible to make");
             }
         }
+        #endregion
+
+        #region Tools
         /// <summary>
         /// Convert a sting in format DD/MT/YYYY HH:MM:SS to datetime
         /// </summary>
@@ -230,5 +237,6 @@ namespace Dagligdagen
                 throw new FormatException(dateTime + " StringToDateTime");
             }
         }
+        #endregion
     }
 }
