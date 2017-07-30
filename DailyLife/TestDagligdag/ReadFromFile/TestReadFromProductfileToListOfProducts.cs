@@ -38,7 +38,7 @@ namespace TestDagligdag
            List<Product> products = new List<Product>();
 
 
-                System.IO.File.WriteAllText(standardDiscardProductFile, string.Empty);
+               System.IO.File.WriteAllText(standardDiscardProductFile, string.Empty);
                 products = ReadFromFiles.ReadFromProductfileToListOfProducts(productlistWithOneUnvalidProduct, standardDiscardProductFile);
 
             Assert.IsTrue(products.Count == 1);
@@ -51,10 +51,10 @@ namespace TestDagligdag
         {
             List<Product> products = new List<Product>();
 
-            System.IO.File.WriteAllText(seeIfRightStringIsDiscarded, string.Empty);
+           System.IO.File.WriteAllText(seeIfRightStringIsDiscarded, string.Empty);
             products = ReadFromFiles.ReadFromProductfileToListOfProducts(productlistWithOneUnvalidProduct,seeIfRightStringIsDiscarded);
-
-            Assert.IsTrue(System.IO.File.ReadAllText(seeIfRightStringIsDiscarded) == "2;Mælk;Food");
+            string discardText = System.IO.File.ReadAllText(seeIfRightStringIsDiscarded);
+            Assert.IsTrue( discardText == "2;Milk;Food;Length: The number of informations is 3, it should be 4\r\n");
         }
 
     }

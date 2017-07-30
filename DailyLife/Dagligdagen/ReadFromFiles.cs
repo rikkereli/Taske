@@ -67,6 +67,7 @@ namespace Dagligdagen
                     firstIsDone = true;
                 }
             }
+            discardFile.Close();
 
             return products;
         }
@@ -77,6 +78,7 @@ namespace Dagligdagen
         /// <returns></returns>
         public static void MakeProductsFromFile(List<Product> products, string line, System.IO.StreamWriter discardFile)
         {
+            #region Variables
             //The string that explains what is wrong with the product
             string explantion = null;
             string[] productDetails = line.Split(';');
@@ -89,67 +91,76 @@ namespace Dagligdagen
             ProductType productType = ProductType.Food;
             //The type of unit you messure the product with
             UnitType unitType = UnitType.piece;
+            #endregion
 
             #region Make Product
+
             if (productDetails.Length == productDetailsCount)
             {
+                #region ID
+                try
+                {
+                    ID = uint.Parse(productDetails[productIDPlacement]);
+                }
+                catch
+                {
+                    explantion += $"ID: The product ID {productDetails[productIDPlacement]} cannot be parsed to a uint, and is therefore invalid. ";
+                }
+                #endregion
+
+                name = productDetails[primaryProductNamePlacement];
+
+                #region Make product type
+                if (productDetails[productTypePlacement] == "Snack")
+                {
+                    productType = ProductType.Snack;
+                }
+                else if (productDetails[productTypePlacement] == "Food")
+                {
+                    productType = ProductType.Food;
+                }
+                else if (productDetails[productTypePlacement] == "Fun")
+                {
+                    productType = ProductType.Fun;
+                }
+                else if (productDetails[productTypePlacement] == "Household")
+                {
+                    productType = ProductType.Household;
+                }
+                else
+                {
+                    explantion += $"ProductType: The string {productDetails[productTypePlacement]} is not a valid type. ";
+                }
+                #endregion
+
+                #region Make unit type
+                if (productDetails[productUnitTypePlacement] == "kg")
+                {
+                    unitType = UnitType.kg;
+                }
+                else if (productDetails[productUnitTypePlacement] == "l")
+                {
+                    unitType = UnitType.l;
+                }
+                else if (productDetails[productUnitTypePlacement] == "g")
+                {
+                    unitType = UnitType.g;
+                }
+                else if (productDetails[productUnitTypePlacement] == "piece")
+                {
+                    unitType = UnitType.piece;
+                }
+                else
+                {
+                    explantion += $"The string {productDetails[productUnitTypePlacement]} is not a valid unittype. ";
+                }
+                #endregion
             }
             else
             {
                 explantion += $"Length: The number of informations is {productDetails.Length}, it should be {productDetailsCount}";
             }
-            try
-            {
-                ID = uint.Parse(productDetails[productIDPlacement]);
-            }
-            catch
-            {
-                explantion += $"ID: The product ID {productDetails[productIDPlacement]} cannot be parsed to a uint, and is therefore invalid. ";
-            }
-            name = productDetails[primaryProductNamePlacement];
-
-            if (productDetails[productTypePlacement] == "Snack")
-            {
-                productType = ProductType.Snack;
-            }
-            else if (productDetails[productTypePlacement] == "Food")
-            {
-                productType = ProductType.Food;
-            }
-            else if (productDetails[productTypePlacement] == "Fun")
-            {
-                productType = ProductType.Fun;
-            }
-            else if (productDetails[productTypePlacement] == "Household")
-            {
-                productType = ProductType.Household;
-            }
-            else
-            {
-                explantion += $"ProductType: The string {productDetails[productTypePlacement]} is not a valid type. ";
-            }
-
-            if (productDetails[productUnitTypePlacement] == "kg")
-            {
-                unitType = UnitType.kg;
-            }
-            else if (productDetails[productUnitTypePlacement] == "l")
-            {
-                unitType = UnitType.l;
-            }
-            else if (productDetails[productUnitTypePlacement] == "g")
-            {
-                unitType = UnitType.g;
-            }
-            else if (productDetails[productUnitTypePlacement] == "piece")
-            {
-                unitType = UnitType.piece;
-            }
-            else
-            {
-                explantion += $"The string {productDetails[productUnitTypePlacement]} is not a valid unittype. ";
-            }
-            if (explantion != null)
+            if (explantion == null)
             {
                 products.Add(new Product(ID, name, unitType, productType));
             }
