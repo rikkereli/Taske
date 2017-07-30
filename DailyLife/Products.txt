@@ -1,0 +1,3 @@
+ID;Name;Type
+1;Kage;Snack
+2;Mælk;Food

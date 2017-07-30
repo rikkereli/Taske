@@ -11,9 +11,9 @@ namespace Dagligdagen
     {
         static void Main(string[] args)
         {
-        string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\TestTransactions.txt";
-
-        ListOfProducts listOfProducts = new ListOfProducts();
+        string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\TestTransactionsTwo.txt";
+            string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\TestProductsTwo.txt";
+            ListOfProducts listOfProducts = new ListOfProducts();
         listOfProducts.AddProduct("Mælk", UnitType.l, ProductType.Food);
         listOfProducts.AddProduct("Kage", UnitType.kg, ProductType.Snack);
         ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);

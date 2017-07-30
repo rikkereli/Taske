@@ -12,14 +12,15 @@ namespace TestDagligdag
     [TestClass]
     public class TestReadFromTransactions
     {
-        private string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\TestTransactions.txt";
+        private readonly string validTransactionFileWithTwoTransactions = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Transactions\\TestTransactionsTwoWithTwoIsRight.txt";
+
         /// <summary>
         /// See if the file is even read
         /// </summary>
         [TestMethod]
         public void TestIfFileIsRead()
         {
-            string[] fileText = System.IO.File.ReadAllLines(transactionFilePath);
+            string[] fileText = System.IO.File.ReadAllLines(validTransactionFileWithTwoTransactions);
             Assert.AreEqual(fileText.Length, 3);
         }
         /// <summary>
@@ -30,7 +31,7 @@ namespace TestDagligdag
         {
             List<Product> products = new List<Product>() { new Product(1,"Mælk",UnitType.l,ProductType.Food), new Product(2,"Kage",UnitType.kg,ProductType.Snack)};
             ListOfProducts listOfProducts = new ListOfProducts(products);
-            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
+            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts);
             Assert.AreEqual(transactions.NumberOfTransactions, 2);
         }
         /// <summary>
@@ -42,7 +43,7 @@ namespace TestDagligdag
             List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
             ListOfProducts listOfProducts = new ListOfProducts(products);
 
-            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts);
+            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts);
             Assert.AreEqual(transactions.FindTransactionByID(1).AmountOfMoney, 10);
         }
     }

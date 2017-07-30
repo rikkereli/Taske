@@ -25,7 +25,7 @@ namespace Dagligdagen
                 {
                     if (productInAlreadyMadeList.ID == product.ID)
                     {
-                        throw new IDAlreadyTakenException($"The product ID {iD} is already taken");
+                        throw new IDAlreadyTakenException($"The product ID {iD} is already taken, the product {product} and {productInAlreadyMadeList} has the same ID");
                     }
                 }
                 listOfProducts.Add(product);

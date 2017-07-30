@@ -10,18 +10,14 @@ namespace Dagligdagen
     /// </summary>
     public static class ReadFromFiles
     {
-        #region ProductFiles
-        /// <summary>
-        /// Takes the file with products and read it in to a list of products to use at runtime
-        /// </summary>
-        /// <returns></returns>
-        public static ListOfProducts ReadFromProductfileToListOfProducts() { return null; }
-        #endregion
 
         #region InformationPlacements
+
+        #region Transaction
         // The placements of the information in the transaction files, as it would be in an array. Makes it more flexible
-        private static int transactionTypePlacementTransaction,
-                           TransactioniDPlacementTransaction = 1,
+        //TODO maybe lock values
+        private static int transactionTypePlacementTransaction = 0,
+                           transactioniDPlacementTransaction = 1,
                            productIDPlacementTransaction = 2,
                            datePlacementTransaction = 3,
                            amountOfMoneyPlacementTransaction = 4,
@@ -29,6 +25,141 @@ namespace Dagligdagen
                            commentPlacementTransaction = 6,
                            discountAmountPlacementTransaction = 7,
                            amountOfProductsBoughtPlacementTransaction = 8;
+        #endregion
+        #region Products
+        //The placement for the information about products
+        private static int productIDPlacement = 0,
+                           primaryProductNamePlacement = 1,
+                           productTypePlacement = 2,
+                           productUnitTypePlacement = 3,
+
+                           productDetailsCount = 4;
+        #endregion
+        #endregion
+
+        #region ProductFiles
+        /// <summary>
+        /// Takes the file with products and read it in to a list of products to use at runtime
+        /// </summary>
+        /// <returns></returns>
+        public static List<Product> ReadFromProductfileToListOfProducts(string path, string writeToPath)
+        {
+            //The list of products to be returned
+            List<Product> products = new List<Product>();
+
+            //The file we write to if the product line is invalid
+            System.IO.StreamWriter discardFile = new System.IO.StreamWriter(writeToPath, true);
+
+            //Makes a string array of all the lines in the file with products
+            string[] productLines = System.IO.File.ReadAllLines(path);
+
+            //Makes sure the first line with the info is not read
+            bool firstIsDone = false;
+
+            foreach (string line in productLines)
+            {
+                if (firstIsDone)
+                {
+                    MakeProductsFromFile(products, line,discardFile);
+                }
+                else
+                {
+                    firstIsDone = true;
+                }
+            }
+
+            return products;
+        }
+        /// <summary>
+        /// Makes a product from list of products in file. Returns a string with explanation if the product is invlid
+        /// </summary>
+        /// <param name="products"></param>
+        /// <returns></returns>
+        public static void MakeProductsFromFile(List<Product> products, string line, System.IO.StreamWriter discardFile)
+        {
+            //The string that explains what is wrong with the product
+            string explantion = null;
+            string[] productDetails = line.Split(';');
+            //The product ID
+            uint ID = 0;
+            //The primary productname
+            string name = "";
+            //TODO make better standard for this
+            //The product type
+            ProductType productType = ProductType.Food;
+            //The type of unit you messure the product with
+            UnitType unitType = UnitType.piece;
+
+            #region Make Product
+            if (productDetails.Length == productDetailsCount)
+            {
+            }
+            else
+            {
+                explantion += $"Length: The number of informations is {productDetails.Length}, it should be {productDetailsCount}";
+            }
+            try
+            {
+                ID = uint.Parse(productDetails[productIDPlacement]);
+            }
+            catch
+            {
+                explantion += $"ID: The product ID {productDetails[productIDPlacement]} cannot be parsed to a uint, and is therefore invalid. ";
+            }
+            name = productDetails[primaryProductNamePlacement];
+
+            if (productDetails[productTypePlacement] == "Snack")
+            {
+                productType = ProductType.Snack;
+            }
+            else if (productDetails[productTypePlacement] == "Food")
+            {
+                productType = ProductType.Food;
+            }
+            else if (productDetails[productTypePlacement] == "Fun")
+            {
+                productType = ProductType.Fun;
+            }
+            else if (productDetails[productTypePlacement] == "Household")
+            {
+                productType = ProductType.Household;
+            }
+            else
+            {
+                explantion += $"ProductType: The string {productDetails[productTypePlacement]} is not a valid type. ";
+            }
+
+            if (productDetails[productUnitTypePlacement] == "kg")
+            {
+                unitType = UnitType.kg;
+            }
+            else if (productDetails[productUnitTypePlacement] == "l")
+            {
+                unitType = UnitType.l;
+            }
+            else if (productDetails[productUnitTypePlacement] == "g")
+            {
+                unitType = UnitType.g;
+            }
+            else if (productDetails[productUnitTypePlacement] == "piece")
+            {
+                unitType = UnitType.piece;
+            }
+            else
+            {
+                explantion += $"The string {productDetails[productUnitTypePlacement]} is not a valid unittype. ";
+            }
+            if (explantion != null)
+            {
+                products.Add(new Product(ID, name, unitType, productType));
+            }
+            else
+            {
+                discardFile.WriteLine($"{line};{explantion}");
+            }
+        }
+            #endregion
+        
         #endregion
 
         #region TransactionFiles
@@ -110,11 +241,11 @@ namespace Dagligdagen
             try
             {
                 //The transaction ID, is used to identify the transaction later on
-                transactionID = UInt32.Parse(transactionDetails[TransactioniDPlacementTransaction]);
+                transactionID = UInt32.Parse(transactionDetails[transactioniDPlacementTransaction]);
             }
             catch (FormatException)
             {
-                throw new FormatException($"The format of the transactionID {transactionDetails[TransactioniDPlacementTransaction]} is invalid. ");
+                throw new FormatException($"The format of the transactionID {transactionDetails[transactioniDPlacementTransaction]} is invalid. ");
             }
             try
             {
