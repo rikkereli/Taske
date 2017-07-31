@@ -178,7 +178,7 @@ namespace Dagligdagen
         /// Takes the file with transactions and reads them in to a list of transactions to use at runtime
         /// </summary>
         /// <returns></returns>
-        public static ListOfTransactions ReadFromTransactionFileToListOfTransactions(string path, ListOfProducts listOfProducts)
+        public static List<Transaction> ReadFromTransactionFileToListOfTransactions(string path, ListOfProducts listOfProducts)
         {
             //The list of transactions to be send as an argument in the constructor of the returned ListOfTransactions
             List<Transaction> listOfTransactions = new List<Transaction>();
@@ -200,9 +200,7 @@ namespace Dagligdagen
                         {
                             if (transactionDetails[transactionTypePlacementTransaction] == "Buy")
                             {
-
                                 MakeBuyTransaction(listOfTransactions, listOfProducts, transactionDetails);
-
                             }
                         }
                         else
@@ -224,7 +222,7 @@ namespace Dagligdagen
                 }
             }
 
-            return new ListOfTransactions(listOfTransactions);
+            return listOfTransactions;
         }
         /// <summary>
         /// Make the ReadFromTransactionfileToListOfTransactios more readable

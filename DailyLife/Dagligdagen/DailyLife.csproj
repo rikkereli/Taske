@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyLifeSystem.cs" />
     <Compile Include="Exceptions\ElementDoesNotExistException.cs" />
     <Compile Include="Exceptions\IDAlreadyTakenException.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="BuyTransaction.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Enums\UnitType.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -31,7 +31,7 @@ namespace TestDagligdag
         {
             List<Product> products = new List<Product>() { new Product(1,"Mælk",UnitType.l,ProductType.Food), new Product(2,"Kage",UnitType.kg,ProductType.Snack)};
             ListOfProducts listOfProducts = new ListOfProducts(products);
-            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts);
+            ListOfTransactions transactions =  new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts));
             Assert.AreEqual(transactions.NumberOfTransactions, 2);
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace TestDagligdag
             List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
             ListOfProducts listOfProducts = new ListOfProducts(products);
 
-            ListOfTransactions transactions = ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts);
+            ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts));
             Assert.AreEqual(transactions.FindTransactionByID(1).AmountOfMoney, 10);
         }
     }

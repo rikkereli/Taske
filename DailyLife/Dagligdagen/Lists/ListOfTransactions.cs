@@ -48,6 +48,7 @@ namespace Dagligdagen
         #endregion
 
         #region ChangeList
+
         /// <summary>
         /// Add a tranaction to the list of transactions
         /// </summary>
@@ -58,6 +59,7 @@ namespace Dagligdagen
         /// <param name="amount"></param>
         public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName)
         {
+            //TODO make it write to file
             try
             {
                 //TODO make the add transaction be different if it is an insert
