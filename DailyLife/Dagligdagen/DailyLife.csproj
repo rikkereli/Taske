@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParseStringToType.cs" />
     <Compile Include="DailyLifeSystem.cs" />
     <Compile Include="Exceptions\ElementDoesNotExistException.cs" />
     <Compile Include="Exceptions\IDAlreadyTakenException.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="IUserinterface.cs" />
     <Compile Include="Lists\List.cs" />
     <Compile Include="Lists\ListOfProducts.cs" />
     <Compile Include="Lists\ListOfTransactions.cs" />

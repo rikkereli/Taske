@@ -107,50 +107,22 @@ namespace Dagligdagen
                     explantion += $"ID: The product ID {productDetails[productIDPlacement]} cannot be parsed to a uint, and is therefore invalid. ";
                 }
                 #endregion
-
                 name = productDetails[primaryProductNamePlacement];
+                #region Find producttype
+                //Find the relevant producttype
+                productType = ParseStringToType.ProductType(productDetails[productTypePlacement]);
 
-                #region Make product type
-                if (productDetails[productTypePlacement] == "Snack")
-                {
-                    productType = ProductType.Snack;
-                }
-                else if (productDetails[productTypePlacement] == "Food")
-                {
-                    productType = ProductType.Food;
-                }
-                else if (productDetails[productTypePlacement] == "Fun")
-                {
-                    productType = ProductType.Fun;
-                }
-                else if (productDetails[productTypePlacement] == "Household")
-                {
-                    productType = ProductType.Household;
-                }
-                else
+                //Makes sure there is an error when producttype not found
+                if (productType == ProductType.NotFound)
                 {
                     explantion += $"ProductType: The string {productDetails[productTypePlacement]} is not a valid type. ";
                 }
                 #endregion
-
                 #region Make unit type
-                if (productDetails[productUnitTypePlacement] == "kg")
-                {
-                    unitType = UnitType.kg;
-                }
-                else if (productDetails[productUnitTypePlacement] == "l")
-                {
-                    unitType = UnitType.l;
-                }
-                else if (productDetails[productUnitTypePlacement] == "g")
-                {
-                    unitType = UnitType.g;
-                }
-                else if (productDetails[productUnitTypePlacement] == "piece")
-                {
-                    unitType = UnitType.piece;
-                }
-                else
+                //Find the propor unit type
+                unitType = ParseStringToType.UnitType(productDetails[productUnitTypePlacement]);
+
+                if (unitType == UnitType.notFound)
                 {
                     explantion += $"The string {productDetails[productUnitTypePlacement]} is not a valid unittype. ";
                 }
@@ -277,7 +249,7 @@ namespace Dagligdagen
             try
             {
                 //The date of the transaction
-                transactiondate = StringToDateTime(transactionDetails[datePlacementTransaction]);
+                transactiondate = ParseStringToType.StringToDateTime(transactionDetails[datePlacementTransaction]);
             }
             catch
             {
@@ -333,50 +305,6 @@ namespace Dagligdagen
         }
         #endregion
 
-        #region Tools
-        /// <summary>
-        /// Convert a sting in format DD/MT/YYYY HH:MM:SS to datetime
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        //TODO Better warnings
-        //TODO Bette security 
-        public static DateTime StringToDateTime(string dateTime)
-        {
-            try
-            {
-                //Separate the date from the time
-                string[] separated = dateTime.Split(' ');
-                //The first entrance is a date
-                string[] date = separated[0].Split('/');
-                //The second entrance is the time
-                string[] time = separated[1].Split(':');
 
-                //This is to test if the format is right. 
-                string year = date[2];
-                string month = date[1];
-                string day = date[0];
-
-                string hour = time[0];
-                string minute = time[1];
-                string second = time[2];
-
-                //See if the format is right
-                if (!(year.Length == 4 && month.Length == 2 && day.Length == 2 && hour.Length == 2 && minute.Length == 2 && second.Length == 2))
-                {
-                    throw new FormatException();
-                }
-                
-                //Because of the order things are in, i have had to move around. 
-                //                      The year            The Month           The day             The hour            The minute            The second  
-                return new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]), int.Parse(time[0]), int.Parse(time[1]), int.Parse(time[2]));
-            }
-            //Everything that does so this does not work, is a wrong format. Therefore I will throw a format exception
-            catch (Exception)
-            {
-                throw new FormatException(dateTime + " StringToDateTime");
-            }
-        }
-        #endregion
     }
 }

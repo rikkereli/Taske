@@ -7,6 +7,6 @@ namespace Dagligdagen
 {
     public enum UnitType
     {
-        g, kg, gram, piece, l
+        g, kg, piece, l, notFound
     }
 }

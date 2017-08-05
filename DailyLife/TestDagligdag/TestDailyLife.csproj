@@ -58,6 +58,8 @@
     <Compile Include="ListOfProducts\TestAddProduct.cs" />
     <Compile Include="ListOfProducts\TestFindProductByID.cs" />
     <Compile Include="ReadFromFile\TestReadFromProductfileToListOfProducts.cs" />
+    <Compile Include="ParseStringToType\TestStringToTypeUnit.cs" />
+    <Compile Include="ParseStringToType\TestStringToTypeProductType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dagligdagen\DailyLife.csproj">

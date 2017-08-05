@@ -7,6 +7,6 @@ namespace Dagligdagen
 {
     public enum ProductType
     {
-        Food, Fun, Snack, Household
+        Food, Fun, Snack, Household, NotFound
     }
 }
