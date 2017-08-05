@@ -111,13 +111,42 @@ namespace Dagligdagen
         {
             //Information
             decimal price;
-            Product product;
+            Product product = null;
             decimal discoundAmount;
             DateTime date;
             int amount;
             string comment;
             string productName;
+
+            Console.WriteLine("Enter price");
+            //Make sure a valid price is added
+            while (!decimal.TryParse(Console.ReadLine(), out price))
+            {
+                Console.WriteLine("The inserted text is not a valid number, please try again");
+            }
+
+            do
+            {
+                product = system.listOfProducts.FindProductByName(Console.ReadLine());
+                if(product == null)
+                {
+                    Console.WriteLine("The productname is not in the database");
+                }
+            }
+            while (product == null);
+            //TODO make product find function
+
+            //Make sure a valid discountamound is added
+            while (!decimal.TryParse(Console.ReadLine(), out discoundAmount))
+            {
+                Console.WriteLine("The inserted text is not a valid number, please try again");
+            }
+
+
         }
+
+
+
         #endregion
 
         #endregion

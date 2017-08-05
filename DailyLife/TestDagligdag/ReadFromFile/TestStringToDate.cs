@@ -19,7 +19,7 @@ namespace TestDagligdag
             //The date to parse
             string dateTime = "25/07/2017 12:47:00";
 
-            Assert.IsTrue(ReadFromFiles.StringToDateTime(dateTime).ToString() == dateTime);
+            Assert.IsTrue(ParseStringToType.StringToDateTime(dateTime).ToString() == dateTime);
         }
         /// <summary>
         /// Test if it works flexible, always using now.
@@ -30,7 +30,7 @@ namespace TestDagligdag
             //Find now
             string dateTimeNow = DateTime.Now.ToString();
 
-            Assert.IsTrue(ReadFromFiles.StringToDateTime(dateTimeNow).ToString() == dateTimeNow);
+            Assert.IsTrue(ParseStringToType.StringToDateTime(dateTimeNow).ToString() == dateTimeNow);
         }
         /// <summary>
         /// Test if we get a formatexception when the yearformat is wrong
@@ -43,7 +43,7 @@ namespace TestDagligdag
             string wrongYearFormat = "25/07/17 12:30:05";
             try
             {
-                Console.WriteLine(ReadFromFiles.StringToDateTime(wrongYearFormat));
+                Console.WriteLine(ParseStringToType.StringToDateTime(wrongYearFormat));
                 Console.ReadKey();
             }
             catch (FormatException)
@@ -66,7 +66,7 @@ namespace TestDagligdag
             string dateTime = "25/17/2017 12:47:00";
             try
             {
-                Console.WriteLine(ReadFromFiles.StringToDateTime(dateTime));
+                Console.WriteLine(ParseStringToType.StringToDateTime(dateTime));
                 Console.ReadKey();
             }
             catch (FormatException)
@@ -89,7 +89,7 @@ namespace TestDagligdag
             string dateTime = "-5/07/2017 12:47:00";
             try
             {
-                Console.WriteLine(ReadFromFiles.StringToDateTime(dateTime));
+                Console.WriteLine(ParseStringToType.StringToDateTime(dateTime));
                 Console.ReadKey();
             }
             catch (FormatException)
@@ -112,7 +112,7 @@ namespace TestDagligdag
             string dateTime = "22:22/2222 22:22:22";
             try
             {
-                Console.WriteLine(ReadFromFiles.StringToDateTime(dateTime));
+                Console.WriteLine(ParseStringToType.StringToDateTime(dateTime));
                 Console.ReadKey();
             }
             catch (FormatException)
