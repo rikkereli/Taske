@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Dagligdagen
@@ -150,6 +151,15 @@ namespace Dagligdagen
             system.listOfTransactions.AddBuyTransaction(price, product, discoundAmount, date, amount, comment, productName);
         }
         /// <summary>
+        /// Used to exit program
+        /// </summary>
+        public void Exit()
+        {
+            Console.WriteLine("You have choosen to exit program. Have a nice day");
+            Thread.Sleep(3000);
+            Environment.Exit(0);
+        }
+        /// <summary>
         /// Is used to make a datetime from user input
         /// </summary>
         /// <returns></returns>
@@ -244,7 +254,7 @@ namespace Dagligdagen
                 Console.Clear();
                 int highestNumberOfMenuItems = 0;
                 int countTheWrittenItems = 0;
-                String[] arrayOfMenuItem = new string[] { "Make transaction", "Make product", "See products", "See transactions"}; //TODO make watch profile
+                String[] arrayOfMenuItem = new string[] { "Make transaction", "Make product", "See products", "See transactions", "Exit"}; //TODO make watch profile
                 Console.WriteLine("To use the system, use one of the following commands");
                 foreach (String menuItem in arrayOfMenuItem)
                 {
@@ -281,6 +291,9 @@ namespace Dagligdagen
                     break;
                 case 4:
                     WriteOutTransactions();
+                    break;
+                case 5:
+                    Exit();
                     break;
                 default:
                     Console.WriteLine("something went wrong");

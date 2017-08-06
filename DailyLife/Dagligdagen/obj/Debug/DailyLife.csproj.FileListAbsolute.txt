@@ -4,3 +4,6 @@ C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\Dagligdage
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\DailyLife.csprojResolveAssemblyReference.cache
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\Dagligdagen.exe
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\Dagligdagen.pdb
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\UserControl1.g.cs
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\Dagligdagen_MarkupCompile.cache
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\Dagligdagen_MarkupCompile.lref
