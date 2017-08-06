@@ -45,7 +45,6 @@ namespace Dagligdagen
             string discardedTransactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedTransactions.txt";
             string discardedProductFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedProducts.txt";
             UserInterfaceConsole uI = new UserInterfaceConsole(new DailyLifeSystem(productFilePath, discardedProductFilePath, transactionFilePath, discardedTransactionFilePath));
-            Console.ReadKey();
             uI.Run();
         }
 

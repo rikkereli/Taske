@@ -95,11 +95,11 @@ namespace Dagligdagen
         public void AddBuyTransaction()
         {
             //TODO Make big transactions without all the products 
-            AddProductToTransaction();
+            AddProductToBuyTransaction();
 
             
         }
-        public void AddProductToTransaction()
+        public void AddProductToBuyTransaction()
         {
             //Information
             decimal price;
@@ -116,22 +116,21 @@ namespace Dagligdagen
             {
                 Console.WriteLine("The inserted text is not a valid number, please try again");
             }
-
+            Console.WriteLine("Enter product name"); //TODO change everything to lower when seaching name
             do
             {
-                Console.WriteLine("Enter product name"); //TODO change everything to lower when seaching name
                 product = system.listOfProducts.FindProductByName(Console.ReadLine());
                 if(product == null)
                 {
-                    Console.WriteLine("The productname is not in the database");
+                    Console.WriteLine("The productname is not in the database, try again");
                 }
                 //Make the productname so the product can be found again if there is trouble with the id's
-                productName = product.PrimaryProductName;
             }
             while (product == null);
             //TODO make product find function
-
+            productName = product.PrimaryProductName;
             //Make sure a valid discountamound is added
+            Console.WriteLine("Enter discount amount");
             while (!decimal.TryParse(Console.ReadLine(), out discoundAmount))
             {
                 Console.WriteLine("The inserted text is not a valid number, please try again");
@@ -140,19 +139,15 @@ namespace Dagligdagen
             date = MakeADatetimeWithUserInput();
 
             //Make sure a valid amount is added
+            Console.WriteLine("Enter amount of products bought");
             while (!int.TryParse(Console.ReadLine(), out amount))
             {
                 Console.WriteLine("The inserted text is not a valid number, please try again");
             }
-            //Make sure a valid price is added
-            while (!decimal.TryParse(Console.ReadLine(), out price))
-            {
-                Console.WriteLine("The inserted text is not a valid number, please try again");
-            }
+            Console.WriteLine("Enter comment");
             comment = Console.ReadLine();
 
-
-
+            system.listOfTransactions.AddBuyTransaction(price, product, discoundAmount, date, amount, comment, productName);
         }
         /// <summary>
         /// Is used to make a datetime from user input
@@ -165,7 +160,9 @@ namespace Dagligdagen
                 year,
                 minute,
                 hour,
-                second;
+                //I don't really think it is neccesary for the user to write the second
+                //TODO Make common datetime to whole transaction 
+                second = 0;
 
             //Make sure a year is added
             Console.WriteLine("Year");
@@ -187,21 +184,15 @@ namespace Dagligdagen
             }
             //Make sure a valid minute is added
             Console.WriteLine("Minute:");
-            while (!(int.TryParse(Console.ReadLine(), out minute) && (minute >= 0 && year <= 60)))
+            while (!(int.TryParse(Console.ReadLine(), out minute) && (minute >= 0 && minute <= 60)))
             {
-                Console.WriteLine("The inserted text is not a valid year, please try again");
+                Console.WriteLine("The inserted text is not a valid minute, please try again");
             }
             //Make sure a hour is added
             Console.WriteLine("Hour");
             while (!(int.TryParse(Console.ReadLine(), out hour) && (hour >= 0 && hour <= 24)))
             {
-                Console.WriteLine("The inserted text is not a valid year, please try again");
-            }
-            //Make sure a second is added
-            Console.WriteLine("Second");
-            while (!(int.TryParse(Console.ReadLine(), out second) && (second >= 1900 && second <= 2100)))
-            {
-                Console.WriteLine("The inserted text is not a valid year, please try again");
+                Console.WriteLine("The inserted text is not a valid hour, please try again");
             }
             return new DateTime(year, month, day, hour, minute, second);
         }

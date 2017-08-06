@@ -4,6 +4,6 @@
 3;Banan;Food;piece
 4;Øl;Snack;l
 5;Vand;Food;l
-6;;Food;l
+6;Is;Food;l
 7;Guitar;Fun;piece
 8;Mikkel;Fun;piece

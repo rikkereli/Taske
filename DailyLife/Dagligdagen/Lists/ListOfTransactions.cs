@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -70,9 +71,13 @@ namespace Dagligdagen
             //TODO make it write to file
             try
             {
+                BuyTransaction transaction = new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName);
                 //TODO make the add transaction be different if it is an insert
-                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName));
+                listOfTransactions.Add(transaction);
                 iD++;
+                StreamWriter streamWriter = new StreamWriter(pathToFile, true);
+                streamWriter.WriteLine(transaction.FileFormat());
+                streamWriter.Close();
             }
             //TODO Will probably implement this later. Don't know what to put here now
             catch (Exception)

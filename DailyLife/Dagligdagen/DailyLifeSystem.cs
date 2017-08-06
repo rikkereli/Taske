@@ -41,7 +41,7 @@ namespace Dagligdagen
             //Makes a list of products with the content of a file
             listOfProducts = new ListOfProducts(ReadFromFiles.ReadFromProductfileToListOfProducts(fileWithProductPlacement, fileWithDiscardedProductPlacement), fileWithProductPlacement);
             //Makes a list of Transactions with the content of a file and the list of products
-            listOfTransactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(fileWithTransactionsPlacement, listOfProducts),listOfTransactionsFilePlacement);
+            listOfTransactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(fileWithTransactionsPlacement, listOfProducts),fileWithTransactionsPlacement);
 
             //Save the placements of the paths
             listOfProductsFilePlacement = fileWithProductPlacement;
