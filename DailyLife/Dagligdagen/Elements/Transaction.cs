@@ -109,6 +109,11 @@ namespace Dagligdagen
         {
             return $"{iD} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
         }
+        /// <summary>
+        /// The format the transaction is to be written with in the file
+        /// </summary>
+        /// <returns></returns>
+        public abstract string FileFormat();
         #endregion
     }
 }

@@ -16,8 +16,9 @@ namespace Dagligdagen
         /// Makes it possible to add a list when construction the list, so there is no problems with ID
         /// </summary>
         /// <param name="list"></param>
-        public ListOfTransactions(List<Transaction> listOfTransactions)
+        public ListOfTransactions(List<Transaction> listOfTransactions, string path)
         {
+            pathToFile = path;
             foreach (Transaction transaction in listOfTransactions)
             {
                 //So there is an unique iD
@@ -40,10 +41,17 @@ namespace Dagligdagen
         /// <summary>
         /// Makes it possible to not add a list when construction a list of transactions
         /// </summary>
-        public ListOfTransactions() { }
+        public ListOfTransactions(string path)
+        {
+            pathToFile = path;
+        }
         #endregion
-        
+
         #region Fields and proporties
+        /// <summary>
+        /// The path to the file where the transaction is
+        /// </summary>
+        string pathToFile;
         private List<Transaction> listOfTransactions = new List<Transaction>();
         #endregion
 

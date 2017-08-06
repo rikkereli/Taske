@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,9 @@ namespace Dagligdagen
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
         /// <param name="productType"></param>
-        public ListOfProducts(List<Product> products)
+        public ListOfProducts(List<Product> products, string path)
         {
+            this.path = path;
             foreach (Product product in products)
             {
                 //So there is a unique iD
@@ -39,9 +41,9 @@ namespace Dagligdagen
         /// <summary>
         /// Makes it possible to make a new list without neding 
         /// </summary>
-        public ListOfProducts()
+        public ListOfProducts(string path)
         {
-
+            this.path = path;
         }
         #endregion
 
@@ -53,6 +55,10 @@ namespace Dagligdagen
         #endregion
 
         #region Info
+        /// <summary>
+        /// The path to the file with products
+        /// </summary>
+        string path;
         //Send back a readonly list
         public IEnumerable<Product>  ProductList
         {
@@ -76,8 +82,12 @@ namespace Dagligdagen
         /// <param name="productType"></param>
         public void AddProduct(string primaryProductName, UnitType typeOfUnit, ProductType productType)
         {
-            listOfProducts.Add(new Product(iD, primaryProductName, typeOfUnit, productType));
+            Product product = new Product(iD, primaryProductName, typeOfUnit, productType);
+            listOfProducts.Add(product);
             iD++;
+            StreamWriter streamwriter = new StreamWriter(path, true);
+            streamwriter.WriteLine(product.FileFormat());
+            streamwriter.Close();
         }
         #endregion
 

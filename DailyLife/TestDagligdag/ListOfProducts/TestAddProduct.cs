@@ -17,7 +17,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfStartProductCountIsZero()
         {
-            ListOfProducts productList = new ListOfProducts();
+            ListOfProducts productList = new ListOfProducts(null);
             Assert.AreEqual(productList.NumberOfProducts, 0);
         }
         /// <summary>
@@ -26,7 +26,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductIsAdded()
         {
-            ListOfProducts productList = new ListOfProducts(new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food)});
+            ListOfProducts productList = new ListOfProducts(new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food)},null);
             Assert.AreEqual(productList.NumberOfProducts, 1);
         }
     }

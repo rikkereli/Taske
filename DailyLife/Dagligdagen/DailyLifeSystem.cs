@@ -9,7 +9,7 @@ namespace Dagligdagen
     /// <summary>
     /// The class that contains the system
     /// </summary>
-    class DailyLifeSystem
+    public class DailyLifeSystem
     {
         #region Lists
         /// <summary>
@@ -32,22 +32,22 @@ namespace Dagligdagen
         /// <summary>
         /// The constructor, nedds the lists
         /// </summary>
-        /// <param name="listOfProductPlacement"></param>
-        /// <param name="listOfDiscardedProductPlacement"></param>
-        /// <param name="listOfTransactionsPlacement"></param>
-        /// <param name="listOfDiscardedTransactionsPlacement"></param>
-        public DailyLifeSystem(string listOfProductPlacement, string listOfDiscardedProductPlacement, string listOfTransactionsPlacement, string listOfDiscardedTransactionsPlacement)
+        /// <param name="fileWithProductPlacement"></param>
+        /// <param name="fileWithDiscardedProductPlacement"></param>
+        /// <param name="fileWithTransactionsPlacement"></param>
+        /// <param name="fileWithDiscardedTransactionsPlacement"></param>
+        public DailyLifeSystem(string fileWithProductPlacement, string fileWithDiscardedProductPlacement, string fileWithTransactionsPlacement, string fileWithDiscardedTransactionsPlacement)
         {
             //Makes a list of products with the content of a file
-            listOfProducts = new ListOfProducts(ReadFromFiles.ReadFromProductfileToListOfProducts(listOfProductPlacement, listOfDiscardedProductPlacement));
+            listOfProducts = new ListOfProducts(ReadFromFiles.ReadFromProductfileToListOfProducts(fileWithProductPlacement, fileWithDiscardedProductPlacement), fileWithProductPlacement);
             //Makes a list of Transactions with the content of a file and the list of products
-            listOfTransactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(listOfTransactionsPlacement, listOfProducts));
+            listOfTransactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(fileWithTransactionsPlacement, listOfProducts),listOfTransactionsFilePlacement);
 
             //Save the placements of the paths
-            listOfProductsFilePlacement = listOfProductPlacement;
-            listOfTransactionsFilePlacement = listOfTransactionsPlacement;
-            listOfDiscardedProductFilePlacement = listOfDiscardedProductPlacement;
-            listOfDiscardedTransactionsFilePlacement = listOfDiscardedTransactionsPlacement;
+            listOfProductsFilePlacement = fileWithProductPlacement;
+            listOfTransactionsFilePlacement = fileWithTransactionsPlacement;
+            listOfDiscardedProductFilePlacement = fileWithDiscardedProductPlacement;
+            listOfDiscardedTransactionsFilePlacement = fileWithDiscardedTransactionsPlacement;
         }
 
 

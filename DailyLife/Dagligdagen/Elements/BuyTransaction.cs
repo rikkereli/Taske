@@ -47,6 +47,9 @@ namespace Dagligdagen
         #endregion
         #region Amount
         private int amount;
+        /// <summary>
+        /// Amount of products bought
+        /// </summary>
         public int Amount
         {
             get { return amount; }
@@ -93,5 +96,14 @@ namespace Dagligdagen
             this.productName = ProductName;
         }
         #endregion
+
+        /// <summary>
+        /// The format the product is to be written with in the file
+        /// </summary>
+        /// <returns></returns>
+        public override string FileFormat()
+        {
+            return $"Buy;{ID};{Product.ID};{date};{price};{ProductName};{comment};{discountAmount};{amount}";
+        }
     }
 }

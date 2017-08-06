@@ -48,26 +48,29 @@
     <Compile Include="Exceptions\ElementDoesNotExistException.cs" />
     <Compile Include="Exceptions\IDAlreadyTakenException.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Elements\Item.cs" />
     <Compile Include="IUserinterface.cs" />
     <Compile Include="Lists\List.cs" />
     <Compile Include="Lists\ListOfProducts.cs" />
     <Compile Include="Lists\ListOfTransactions.cs" />
-    <Compile Include="MenuItem.cs" />
-    <Compile Include="Print.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Elements\MenuItem.cs" />
+    <Compile Include="Elements\Product.cs" />
     <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadFromFiles.cs" />
-    <Compile Include="BuyTransaction.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="Elements\BuyTransaction.cs" />
+    <Compile Include="TempTestClass.cs" />
+    <Compile Include="Elements\Transaction.cs" />
     <Compile Include="Enums\UnitType.cs" />
-    <Compile Include="UserInterface.cs" />
+    <Compile Include="UserInterfaceConsole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mechanics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

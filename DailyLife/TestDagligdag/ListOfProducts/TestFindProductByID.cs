@@ -19,7 +19,7 @@ namespace TestDagligdag
         {
             List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
 
-            ListOfProducts productlist = new ListOfProducts(products);
+            ListOfProducts productlist = new ListOfProducts(products, null);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -34,7 +34,7 @@ namespace TestDagligdag
         {
             List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
 
-            ListOfProducts productlist = new ListOfProducts(products);
+            ListOfProducts productlist = new ListOfProducts(products,null);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
@@ -47,7 +47,7 @@ namespace TestDagligdag
         public void SeeIfProductByIDReturnsNullIfProductDoesNotExist()
         {
             List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
-            ListOfProducts productlist = new ListOfProducts(products);
+            ListOfProducts productlist = new ListOfProducts(products,null);
 
             Assert.AreEqual(productlist.FindProductByID(1).PrimaryProductName, "Mælk");
         }

@@ -104,6 +104,14 @@ namespace Dagligdagen
         {
             return $"{iD} | {primaryProductName} | {productType}";
         }
+        /// <summary>
+        /// The format the product is to be written with in the file
+        /// </summary>
+        /// <returns></returns>
+        public string FileFormat()
+        {
+            return $"{ID};{PrimaryProductName};{productType};{typeOfunit}";
+        }
         #endregion
     }
 }
