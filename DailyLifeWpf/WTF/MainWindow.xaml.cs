@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dagligdagen
+namespace WTF
 {
     /// <summary>
-    /// Interaction logic for UserControl.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class UserControl : UserControl
+    public partial class MainWindow : Window
     {
-        public UserControl()
+        public MainWindow()
         {
             InitializeComponent();
         }

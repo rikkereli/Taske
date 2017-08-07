@@ -62,9 +62,9 @@
     <Compile Include="ParseStringToType\TestStringToTypeProductType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dagligdagen\DailyLife.csproj">
+    <ProjectReference Include="..\Dagligdagen\Dagligdagen.csproj">
       <Project>{aac7be73-2143-4f8c-995f-ea7fd7f83434}</Project>
-      <Name>DailyLife</Name>
+      <Name>Dagligdagen</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
