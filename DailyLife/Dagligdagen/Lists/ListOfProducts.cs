@@ -55,6 +55,14 @@ namespace Dagligdagen
         #endregion
 
         #region Info
+        private Product lastAdded;
+        /// <summary>
+        /// So you can se the last added proudct
+        /// </summary>
+        public Product LastAdded
+        {
+            get { return lastAdded; }
+        }
         /// <summary>
         /// The path to the file with products
         /// </summary>
@@ -85,6 +93,7 @@ namespace Dagligdagen
             Product product = new Product(iD, primaryProductName, typeOfUnit, productType);
             listOfProducts.Add(product);
             iD++;
+            lastAdded = product;
             StreamWriter streamwriter = new StreamWriter(path, true);
             streamwriter.WriteLine(product.FileFormat());
             streamwriter.Close();

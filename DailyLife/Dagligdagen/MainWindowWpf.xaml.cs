@@ -115,7 +115,11 @@ namespace Dagligdagen
         {
 
         }
-
+        /// <summary>
+        /// Show and hide the make transaction window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MakeTransaction_Click(object sender, RoutedEventArgs e)
         {
 
@@ -125,9 +129,40 @@ namespace Dagligdagen
         {
 
         }
+
         #endregion
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+        /// <summary>
+        /// Make the transaction window show and hide
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OpenMakeProduct_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddProductToTransaction.Visibility == Visibility.Hidden)
+            {
+                AddProductToTransaction.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AddProductToTransaction.Visibility = Visibility.Hidden;
+            }
+        }
+        /// <summary>
+        /// When you click on the button to make a product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Make_Click(object sender, RoutedEventArgs e)
+        {
+            productList.AddProduct(ProductName.Text, ParseStringToType.UnitType(UnitType.Text), ParseStringToType.ProductType(ProductType.Text));
+            ProductName.Text = productList.LastAdded.ToString();
+            Make_product.Visibility = Visibility.Hidden;
+        }
     }
 }
 

@@ -6,76 +6,126 @@
         xmlns:local="clr-namespace:Dagligdagen"
         xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Dagligdagen.MainWindowWpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="400" Width="588.2" ResizeMode="CanMinimize">
     <Grid x:Name="Main_transaction" Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="403*"/>
+            <ColumnDefinition Width="284*"/>
+            <ColumnDefinition Width="119*"/>
             <ColumnDefinition Width="115*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="MakeTransactionButton" Content="Make transaction" HorizontalAlignment="Left" Height="41" Margin="24,21,0,0" VerticalAlignment="Top" Width="146" Click="MakeTransaction_Click" Background="#FFEDE9E9"/>
-        <Button x:Name="Make_Product" Content="Make product" HorizontalAlignment="Left" Height="41" Margin="24,62,0,0" VerticalAlignment="Top" Width="146" Background="#FFEDE9E9" Click="MakeProduct_Click"/>
-        <Button x:Name="SeeTransactions" Content="See transactions" HorizontalAlignment="Left" Height="44" Margin="24,141,0,0" VerticalAlignment="Top" Width="146" Background="#FFEDE9E9" Click="SeeTransactions_Click"/>
-        <Button x:Name="See_products" Content="See product" HorizontalAlignment="Left" Height="38" Margin="24,103,0,0" VerticalAlignment="Top" Width="146" Background="#FFEDE9E9" Click="See_products_Click"/>
-        <ProgressBar x:Name="See_how_much_of_the_budget_is_used" HorizontalAlignment="Left" Height="321" Margin="81.8,10,0,-10.2" VerticalAlignment="Top" Width="23" Background="#FFCAB1B1" Grid.Column="1"/>
-        <ComboBox x:Name="Show_products" HorizontalAlignment="Left" Height="105" Margin="24,195,0,0" VerticalAlignment="Top" Width="146" Opacity="{DynamicResource {x:Static SystemParameters.IconHeightKey}}">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                    <GradientStop Color="#FFF12525" Offset="1"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
-        </ComboBox>
-        <Grid x:Name="MakeTransaction" HorizontalAlignment="Left" Height="279" Margin="199,16,0,0" VerticalAlignment="Top" Width="281" Background="#FFEDE9E9" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="135*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="142*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="Finish" Grid.ColumnSpan="3" Content="Finish" HorizontalAlignment="Left" Height="29" Margin="70,245,0,0" VerticalAlignment="Top" Width="144" Click="Finish_Click"/>
-            <TextBlock x:Name="ProductTB" HorizontalAlignment="Left" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" Text="Product:" VerticalAlignment="Top" Width="80"/>
-            <TextBlock x:Name="InformationTB" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="53" Margin="21,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" FontFamily="Arial" FontWeight="SemiBold" TextAlignment="Center"><Run Text="Please fill out the following information about your purchase"/></TextBlock>
-            <TextBlock x:Name="TypeTB" HorizontalAlignment="Left" Height="19" Margin="10,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56"><Run Text="Type:"/><LineBreak/><Run/></TextBlock>
-            <TextBlock x:Name="PriceTB" HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="16" Width="66"/>
-            <TextBlock x:Name="DiscountAmountTB" HorizontalAlignment="Left" Height="22" Margin="10,132,0,0" TextWrapping="Wrap" Text="Discount amount:" VerticalAlignment="Top" Width="100"/>
-            <TextBox x:Name="CommentTX" HorizontalAlignment="Left" Height="44" Margin="76,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Grid.ColumnSpan="3" SpellCheck.IsEnabled="True" ToolTip="Write a comment to your transaction"/>
-            <TextBlock x:Name="CommentTB" HorizontalAlignment="Left" Margin="10,196,0,0" TextWrapping="Wrap" Text="Comment:" VerticalAlignment="Top" Height="23" Width="66" RenderTransformOrigin="0.513,2.126"/>
-            <TextBox x:Name="DiscountAmountTX" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="17" Margin="115,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" TextChanged="DiscountAmountTX_TextChanged"/>
-            <TextBox x:Name="PriceTX" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="17" Margin="115,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" TextChanged="PriceTX_TextChanged"/>
-            <ComboBox x:Name="ProductCombobox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="18" Margin="95,64,0,0" VerticalAlignment="Top" Width="98" SelectionChanged="Product_SelectionChanged" AllowDrop="True" BorderBrush="#FFB14747" Foreground="Black" OpacityMask="#FFD02121" IsSynchronizedWithCurrentItem="True">
-                <ComboBox.Background>
-                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                        <GradientStop Color="#FFD46666" Offset="1"/>
-                    </LinearGradientBrush>
-                </ComboBox.Background>
-                <ComboBox.LayoutTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ComboBox.LayoutTransform>
-            </ComboBox>
-            <ComboBox x:Name="TypeCombobox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="18" Margin="95,88,0,0" VerticalAlignment="Top" Width="98" RenderTransformOrigin="-0.394,0.578" SelectionChanged="Type_SelectionChanged">
-                <ComboBox.LayoutTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ComboBox.LayoutTransform>
-                <Button Content="Food"/>
-                <Button Content="Fun"/>
-                <Button Content="Household"/>
-                <Button Content="Snack"/>
-            </ComboBox>
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="15" Margin="10,153,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top" Width="56"/>
-            <TextBox x:Name="AmountTX" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="14" Margin="115,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-            <Button x:Name="AddProduct" Content="+" Grid.Column="2" HorizontalAlignment="Left" Height="18" Margin="58.8,64,0,0" VerticalAlignment="Top" Width="30" ToolTip="Add new product"/>
-            <TextBlock x:Name="DateTime" HorizontalAlignment="Left" Height="18" Margin="10,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"><Run Text="Time"/><Run Text=" and date"/></TextBlock>
-            <xctk:DateTimePicker x:Name="DateTimePicker" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="97,173,0,0" VerticalAlignment="Top" Width="142"/>
+        <Menu x:Name="menu" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="582" Margin="0,0,-0.4,0">
+            <Button x:Name="MoneyMenu" Content="Budget" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="96" Click="MakeTransaction_Click" Background="#FFF0F0F0" BorderBrush="#FFF0F0F0" FontWeight="Bold"/>
+            <ComboBoxItem x:Name="HealthMenu" Content="Health" FontWeight="Bold"/>
+            <ComboBoxItem x:Name="MoodMenu" Content="Mood" Height="26" Width="43" FontWeight="Bold"/>
+        </Menu>
+        <Grid x:Name="BudgetGrid" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="280" Margin="10,31,0,0" VerticalAlignment="Top" Width="498">
+            <ProgressBar x:Name="See_how_much_of_the_budget_is_used" HorizontalAlignment="Left" Height="350" Margin="520,0,-54,-70" VerticalAlignment="Top" Width="32" Background="#FFCAB1B1"/>
+            <Image x:Name="image" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+            <Menu x:Name="BudgetMenu" HorizontalAlignment="Left" Height="340" Margin="-12,-5,0,-55" VerticalAlignment="Top" Width="112" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Background="White" BorderThickness="3,0" RenderTransformOrigin="0.5,0.5" FontFamily="Arial">
+                <Button BorderBrush="White" Background="White" Content="Make product" Click="Button_Click_1" Margin="0,10,0,0"/>
+                <Button BorderBrush="White" Background="White" Content="Make transaction">
+                    <Button.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.OpacityMask>
+                </Button>
+                <Button BorderBrush="White" Background="White" Content="See transactions"/>
+                <Button BorderBrush="White" Content="See products" Foreground="Black" Click="Button_Click" Background="White"/>
+                <Button BorderBrush="White" Background="White" Content="Set budget" Foreground="Black"/>
+                <Button Content="Fixed payments" BorderBrush="White" Background="White"/>
+            </Menu>
+            <Grid x:Name="AddProductToTransaction" HorizontalAlignment="Left" Height="335" Margin="105,0,-17,-55" VerticalAlignment="Top" Width="410" Background="White" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="135*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="142*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Finish" Grid.ColumnSpan="3" Content="Finish" HorizontalAlignment="Left" Height="29" Margin="134,300,0,-10" VerticalAlignment="Top" Width="144" Click="Finish_Click"/>
+                <TextBlock x:Name="ProductTB" HorizontalAlignment="Left" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" Text="Product:" VerticalAlignment="Top" Width="80"/>
+                <TextBlock x:Name="InformationTB" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="53" Margin="76,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" FontFamily="Arial" FontWeight="SemiBold" TextAlignment="Center"><Run Text="Please fill out the following information about your purchase"/></TextBlock>
+                <TextBlock x:Name="TypeTB" HorizontalAlignment="Left" Height="19" Margin="10,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56"><Run Text="Type:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="PriceTB" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Height="16" Width="66"/>
+                <TextBlock x:Name="DiscountAmountTB" HorizontalAlignment="Left" Height="22" Margin="10,164,0,0" TextWrapping="Wrap" Text="Discount amount:" VerticalAlignment="Top" Width="100"/>
+                <TextBox x:Name="CommentTX" HorizontalAlignment="Left" Height="44" Margin="115,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Grid.ColumnSpan="3" SpellCheck.IsEnabled="True" ToolTip="Write a comment to your transaction"/>
+                <TextBlock x:Name="CommentTB" HorizontalAlignment="Left" Margin="10,251,0,0" TextWrapping="Wrap" Text="Comment:" VerticalAlignment="Top" Height="23" Width="66" RenderTransformOrigin="0.513,2.126"/>
+                <TextBox x:Name="DiscountAmountTX" HorizontalAlignment="Left" Height="22" Margin="172,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" TextChanged="DiscountAmountTX_TextChanged" Grid.ColumnSpan="3"/>
+                <TextBox x:Name="PriceTX" HorizontalAlignment="Left" Height="20" Margin="172,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" TextChanged="PriceTX_TextChanged" Grid.ColumnSpan="3"/>
+                <ComboBox x:Name="ProductCombobox" HorizontalAlignment="Left" Height="22" Margin="143,61,0,0" VerticalAlignment="Top" Width="98" SelectionChanged="Product_SelectionChanged" AllowDrop="True" BorderBrush="#FFB14747" Foreground="Black" OpacityMask="#FFD02121" IsSynchronizedWithCurrentItem="True" Grid.ColumnSpan="3">
+                    <ComboBox.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                            <GradientStop Color="#FFD46666" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Background>
+                    <ComboBox.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ComboBox.LayoutTransform>
+                </ComboBox>
+                <ComboBox x:Name="TypeCombobox" HorizontalAlignment="Left" Height="22" Margin="144,87,0,0" VerticalAlignment="Top" Width="97" RenderTransformOrigin="-0.394,0.578" SelectionChanged="Type_SelectionChanged" Grid.ColumnSpan="3">
+                    <ComboBox.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ComboBox.LayoutTransform>
+                    <Button Content="Food"/>
+                    <Button Content="Fun"/>
+                    <Button Content="Household"/>
+                    <Button Content="Snack"/>
+                </ComboBox>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="20" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"><Run Text="Amount"/><Run Text=" of products"/><Run Text=":"/></TextBlock>
+                <TextBox x:Name="AmountTX" HorizontalAlignment="Left" Height="21" Margin="172,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="3" ToolTip="The amount of products bought"/>
+                <Button x:Name="AddProduct" Content="+" HorizontalAlignment="Left" Height="22" Margin="39.4,61,0,0" VerticalAlignment="Top" Width="46" ToolTip="Add new product" Grid.Column="2"/>
+                <TextBlock x:Name="DateTime" HorizontalAlignment="Left" Height="18" Margin="10,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"><Run Text="Time"/><Run Text=" and date"/><Run Text=":"/></TextBlock>
+                <xctk:DateTimePicker x:Name="DateTimePicker" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="115,218,0,0" VerticalAlignment="Top" Width="163"/>
+                <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="21" Margin="9,114,0,0" TextWrapping="Wrap" Text="Amount in product" VerticalAlignment="Top" Width="119"/>
+                <TextBox x:Name="textBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="20" Margin="172,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" ToolTip="The amount of product in the products choosen unittype. Fx if you bought two ½ liter milk, you would write 0.5, and two in amount of products"/>
+            </Grid>
         </Grid>
+        <xctk:ChildWindow x:Name="Make_product" HorizontalAlignment="Left" Height="162" Margin="188,76,0,0" VerticalAlignment="Top" Width="255" Grid.ColumnSpan="2" WindowBackground="#FFFA8AEB" CaptionForeground="#FFE8D1D1" CaptionShadowBrush="#FFDACDCD" Foreground="Black" OverlayBrush="#FFAB70E8" WindowBorderBrush="White" WindowInactiveBackground="#FFEEC6C6" Background="White" BorderBrush="#FFFFCFAB">
+            <Grid x:Name="Add_product" HorizontalAlignment="Left" Height="81" Margin="0,0,-4,0" VerticalAlignment="Top" Width="348">
+                <TextBlock x:Name="ProductName" HorizontalAlignment="Left" Height="18" Margin="10,10,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Width="55"/>
+                <TextBlock x:Name="ProductType1" HorizontalAlignment="Left" Height="26" Margin="10,37,0,0" TextWrapping="Wrap" Text="Product type" VerticalAlignment="Top" Width="94"/>
+                <TextBlock x:Name="UnitType1" HorizontalAlignment="Left" Height="27" Margin="10,68,0,-14" TextWrapping="Wrap" Text="Unit type" VerticalAlignment="Top" Width="115"/>
+                <TextBox x:Name="ProductNameTB" HorizontalAlignment="Left" Height="18" Margin="85,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.5,0.5">
+                    <TextBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.013"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBox.RenderTransform>
+                </TextBox>
+                <ComboBox x:Name="UnitType" HorizontalAlignment="Left" Width="114" Margin="86,68,0,-7" Height="20" VerticalAlignment="Top">
+                    <Button Content="g"/>
+                    <Button Content="kg"/>
+                    <Button Content="l"/>
+                    <Button Content="piece"/>
+                </ComboBox>
+                <ComboBox x:Name="ProductType" HorizontalAlignment="Left" Height="20" Margin="86,37,0,0" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.557,-0.007">
+                    <ComboBox.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                            <GradientStop Color="#FF120F0F" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ComboBox.Background>
+                    <Button Content="Food"/>
+                    <Button Content="Snack"/>
+                    <Button Content="Fun"/>
+                    <Button Content="Household"/>
+                </ComboBox>
+                <Button x:Name="Make" Content="Make product" HorizontalAlignment="Left" Margin="86,100,0,-40" VerticalAlignment="Top" Width="101" Height="21" Click="Make_Click"/>
+            </Grid>
+        </xctk:ChildWindow>
     </Grid>
 </Window>
