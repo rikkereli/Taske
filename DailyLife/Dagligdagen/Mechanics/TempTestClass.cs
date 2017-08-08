@@ -20,7 +20,7 @@ namespace Dagligdagen
             ListOfProducts listOfProducts = new ListOfProducts(productFilePath);
             listOfProducts.AddProduct("Mælk", UnitType.l, ProductType.Food);
             listOfProducts.AddProduct("Kage", UnitType.kg, ProductType.Snack);
-            ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts), transactionFilePath);
+            ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts, standardDiscardProductFile), transactionFilePath);
 
             List<Product> products = ReadFromFiles.ReadFromProductfileToListOfProducts(productFilePath, standardDiscardProductFile);
             Console.WriteLine(Product.TableExplanation());

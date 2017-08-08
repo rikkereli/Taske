@@ -1,4 +1,0 @@
-Type;ID;ProductID;Date;AmountOfMoney;Product name;Comment;DiscountAmount(OB);AmountOfProductsBought(OB)
-Buy;1;2;23/07/2017/ 00:00:00;10;Mælk;Købte Maelk;2;1
-Buy;2;1;23/07/2017 12:22:12;5;Kage;Købte Kage;0;2
-Buy;3;2;06/08/2017 20:16:00;5;;Arla;1;3

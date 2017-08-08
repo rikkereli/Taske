@@ -1,4 +1,0 @@
-1;Kage;Snack;Length: The number of informations is 3, it should be 4
-2;M�lk;Food;Length: The number of informations is 3, it should be 4
-2;Milk;Food;l3;Banan;Food;piece;Length: The number of informations is 7, it should be 4
-;Length: The number of informations is 1, it should be 4

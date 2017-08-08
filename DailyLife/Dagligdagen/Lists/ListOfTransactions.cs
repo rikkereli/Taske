@@ -54,6 +54,15 @@ namespace Dagligdagen
         /// </summary>
         string pathToFile;
         private List<Transaction> listOfTransactions = new List<Transaction>();
+
+        private Transaction latestAdded;
+        /// <summary>
+        /// Get the latest added transaction.
+        /// </summary>
+        public Transaction LatestAdded
+        {
+            get { return latestAdded; }
+        }
         #endregion
 
         #region ChangeList
@@ -75,6 +84,7 @@ namespace Dagligdagen
                 //TODO make the add transaction be different if it is an insert
                 listOfTransactions.Add(transaction);
                 iD++;
+                latestAdded = transaction;
                 StreamWriter streamWriter = new StreamWriter(pathToFile, true);
                 streamWriter.WriteLine(transaction.FileFormat());
                 streamWriter.Close();

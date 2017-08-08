@@ -1,3 +1,0 @@
-ID;Name;TypeOfProduct;UnitType
-1;Kage;Snack;kg
-2;Milk;Food;l

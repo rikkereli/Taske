@@ -16,19 +16,20 @@ namespace Dagligdagen
         /// </summary>
         static public ProductType ProductType(string typeName)
         {
-            if (typeName == "Snack")
+            typeName = typeName.ToLower();
+            if (typeName == "snack")
             {
                 return Dagligdagen.ProductType.Snack;
             }
-            else if (typeName == "Food")
+            else if (typeName == "food")
             {
                 return Dagligdagen.ProductType.Food;
             }
-            else if (typeName == "Fun")
+            else if (typeName == "fun")
             {
                 return Dagligdagen.ProductType.Fun;
             }
-            else if (typeName == "Household")
+            else if (typeName == "household")
             {
                 return Dagligdagen.ProductType.Household;
             }
@@ -44,8 +45,9 @@ namespace Dagligdagen
         /// <returns></returns>
         static public UnitType UnitType(string unitType)
         {
+            unitType = unitType.ToLower();
             //TODO remove the big kg. 
-            if (unitType == "kg" || unitType == "Kg")
+            if (unitType == "kg")
             {
                 return Dagligdagen.UnitType.kg;
             }

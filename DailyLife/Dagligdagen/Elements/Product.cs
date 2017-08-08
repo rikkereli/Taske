@@ -100,9 +100,17 @@ namespace Dagligdagen
         {
             return $"ID | Product name | Product type";
         }
-        public override string ToString()
+        /// <summary>
+        /// The format the class writes out the product with when used for a table
+        /// </summary>
+        /// <returns></returns>
+        public string TableFormat()
         {
             return $"{iD} | {primaryProductName} | {productType}";
+        }
+        public override string ToString()
+        {
+            return primaryProductName;   
         }
         /// <summary>
         /// The format the product is to be written with in the file

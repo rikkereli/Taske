@@ -2,3 +2,43 @@
 2;M�lk;Food;Length: The number of informations is 3, it should be 4
 2;Milk;Food;l3;Banan;Food;piece;Length: The number of informations is 7, it should be 4
 ;Length: The number of informations is 1, it should be 4
+1;Kage;Snack;kg;ProductType: The string Snack is not a valid type. 
+2;Milk;Food;l;ProductType: The string Food is not a valid type. 
+3;Banan;Food;piece;ProductType: The string Food is not a valid type. 
+4;Øl;Snack;l;ProductType: The string Snack is not a valid type. 
+5;Vand;Food;l;ProductType: The string Food is not a valid type. 
+6;Is;Food;l;ProductType: The string Food is not a valid type. 
+7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
+8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 
+1;Kage;Snack;kg;ProductType: The string Snack is not a valid type. 
+2;Milk;Food;l;ProductType: The string Food is not a valid type. 
+3;Banan;Food;piece;ProductType: The string Food is not a valid type. 
+4;Øl;Snack;l;ProductType: The string Snack is not a valid type. 
+5;Vand;Food;l;ProductType: The string Food is not a valid type. 
+6;Is;Food;l;ProductType: The string Food is not a valid type. 
+7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
+8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 
+1;Kage;Snack;kg;ProductType: The string Snack is not a valid type. 
+2;Milk;Food;l;ProductType: The string Food is not a valid type. 
+3;Banan;Food;piece;ProductType: The string Food is not a valid type. 
+4;Øl;Snack;l;ProductType: The string Snack is not a valid type. 
+5;Vand;Food;l;ProductType: The string Food is not a valid type. 
+6;Is;Food;l;ProductType: The string Food is not a valid type. 
+7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
+8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 
+1;Kage;Snack;kg;ProductType: The string Snack is not a valid type. 
+2;Milk;Food;l;ProductType: The string Food is not a valid type. 
+3;Banan;Food;piece;ProductType: The string Food is not a valid type. 
+4;Øl;Snack;l;ProductType: The string Snack is not a valid type. 
+5;Vand;Food;l;ProductType: The string Food is not a valid type. 
+6;Is;Food;l;ProductType: The string Food is not a valid type. 
+7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
+8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 
+1;Kage;Snack;kg;ProductType: The string Snack is not a valid type. 
+2;Milk;Food;l;ProductType: The string Food is not a valid type. 
+3;Banan;Food;piece;ProductType: The string Food is not a valid type. 
+4;Øl;Snack;l;ProductType: The string Snack is not a valid type. 
+5;Vand;Food;l;ProductType: The string Food is not a valid type. 
+6;Is;Food;l;ProductType: The string Food is not a valid type. 
+7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
+8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 

@@ -67,7 +67,7 @@ namespace TestDagligdag
         [TestMethod]
         public void TestNotFound()
         {
-            UnitType type = ParseStringToType.UnitType("L");
+            UnitType type = ParseStringToType.UnitType("Ll");
 
             Assert.AreEqual(type, UnitType.notFound);
         }
