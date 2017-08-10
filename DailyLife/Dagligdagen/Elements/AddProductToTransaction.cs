@@ -8,30 +8,50 @@ namespace Dagligdagen
     /// <summary>
     /// A common for all types of transactiona
     /// </summary>
-    public abstract class Transaction
+    public abstract class AddProductToTransaction
     {
         #region Constructor
-        public Transaction(Product product, decimal amountOfMoney, DateTime date, uint iD, string comment)
+        public AddProductToTransaction(Product product, decimal amountOfMoney, DateTime date, uint thisProductID, string comment, decimal amountOfUnit, uint transactionID)
         {
             AmountOfMoney = amountOfMoney;
             Date = date;
-            this.iD = iD;
+            this.thisElementID = thisProductID;
             this.product = product;
             this.comment = comment;
+            this.transactionID = transactionID;
+            this.amountOfUnitInEachElement = amountOfUnit;
         }
         #endregion
 
         #region Proporty
         #region ID
-        private uint iD;
+        private uint thisElementID;
         /// <summary>
         /// The transaction ID
         /// </summary>
-        public uint ID
+        public uint ThisElementID
         {
-            get { return iD; }
+            get { return thisElementID; }
+        }
+
+        private uint transactionID;
+        /// <summary>
+        /// The ID for the transaction this belongs to
+        /// </summary>
+        public uint TransactionID
+        {
+            get { return transactionID;}
         }
         #endregion
+
+        private decimal amountOfUnitInEachElement;
+        /// <summary>
+        /// The amount of the products unit there is in each element of this product
+        /// </summary>
+        public decimal AmountOfUnitInEachElement
+        {
+            get { return amountOfUnitInEachElement; }
+        }
 
         #region Product
         protected Product product;
@@ -107,7 +127,7 @@ namespace Dagligdagen
         }
         public override string ToString()
         {
-            return $"{iD} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
+            return $"{thisElementID} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
         }
         /// <summary>
         /// The format the transaction is to be written with in the file

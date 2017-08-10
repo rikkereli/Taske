@@ -42,3 +42,13 @@
 6;Is;Food;l;ProductType: The string Food is not a valid type. 
 7;Guitar;Fun;piece;ProductType: The string Fun is not a valid type. 
 8;Mikkel;Fun;piece;ProductType: The string Fun is not a valid type. 
+9;Name:;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+9;Name:;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+9;Name:;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+10;Name:;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+11;Name:;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+;Length: The number of informations is 1, it should be 4
+11;;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+11;;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+11;;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 
+11;;NotFound;notFound;ProductType: The string NotFound is not a valid type. The string notFound is not a valid unittype. 

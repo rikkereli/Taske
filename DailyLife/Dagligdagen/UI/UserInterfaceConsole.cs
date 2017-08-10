@@ -229,7 +229,7 @@ namespace Dagligdagen
         public void WriteOutTransactions()
         {
             Console.WriteLine("The transactions are as follows:");
-            foreach (Transaction transaction in system.listOfTransactions)
+            foreach (AddProductToTransaction transaction in system.listOfTransactions)
             {
                 Console.WriteLine(transaction);
             }

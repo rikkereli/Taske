@@ -13,18 +13,29 @@ namespace Dagligdagen
 
         #region InformationPlacements
 
-        #region Transaction
+        #region AddProductTransaction
         // The placements of the information in the transaction files, as it would be in an array. Makes it more flexible
         //TODO maybe lock values
-        private static int transactionTypePlacementTransaction = 0,
-                           transactioniDPlacementTransaction = 1,
-                           productIDPlacementTransaction = 2,
-                           datePlacementTransaction = 3,
-                           amountOfMoneyPlacementTransaction = 4,
-                           productNamePlacementTransaction = 5,
-                           commentPlacementTransaction = 6,
-                           discountAmountPlacementTransaction = 7,
-                           amountOfProductsBoughtPlacementTransaction = 8;
+        private static int transactionTypePlacementProductInTransaction = 0,
+                           productInTransactionIDPlacementProductInTransaction = 1,
+                           transactionIDPlacementProductInTransaction = 2,
+                           productIDPlacementProductInTransaction = 3,
+                           datePlacementProductInTransaction = 4,
+                           amountOfMoneyPlacementProductInTransaction = 5,
+                           amountOfUnitPlacementProductInTransaction = 6,
+                           productNamePlacementProductInTransaction = 7,
+                           commentPlacementProductInTransaction = 8,
+                           discountAmountPlacementProductInTransaction = 9,
+                           amountOfProductsBoughtPlacementProductInTransaction = 10,
+                           numberOfInformationslots = 11;
+        #endregion
+
+        #region Transaction
+        private static int transactionIDPlacementTransaction = 0,
+                           commentPlacementTransaction = 1,
+                           datePlacementTransaction = 2,
+                           numberOfInformation =  3;
+
         #endregion
         #region Products
         //The placement for the information about products
@@ -151,12 +162,12 @@ namespace Dagligdagen
         /// Takes the file with transactions and reads them in to a list of transactions to use at runtime
         /// </summary>
         /// <returns></returns>
-        public static List<Transaction> ReadFromTransactionFileToListOfTransactions(string path, ListOfProducts listOfProducts, string DiscardedFile)
+        public static List<AddProductToTransaction> ReadFromTransactionFileToListOfTransactions(string path, ListOfProducts listOfProducts, string DiscardedFile)
         {
             //The list of transactions to be send as an argument in the constructor of the returned ListOfTransactions
-            List<Transaction> listOfTransactions = new List<Transaction>();
+            List<AddProductToTransaction> listOfTransactions = new List<AddProductToTransaction>();
             //The number of informationslots in te list
-            int numberOfInformationslots = 9;
+
             //Read the text from the files into an array of strings, so every transaction has a entrance
             string[] lines = System.IO.File.ReadAllLines(path);
             //Makes sure the first describing line is not translated.
@@ -171,7 +182,7 @@ namespace Dagligdagen
                         string[] transactionDetails = line.Split(';');
                         if (transactionDetails.Length == numberOfInformationslots)
                         {
-                            if (transactionDetails[transactionTypePlacementTransaction] == "Buy")
+                            if (transactionDetails[transactionTypePlacementProductInTransaction] == "Buy")
                             {
                                 MakeBuyTransaction(listOfTransactions, listOfProducts, transactionDetails);
                             }
@@ -200,11 +211,11 @@ namespace Dagligdagen
         /// <summary>
         /// Make the ReadFromTransactionfileToListOfTransactios more readable
         /// </summary>
-        public static void MakeBuyTransaction(List<Transaction> listOfTransactions, ListOfProducts listOfProducts, String[] transactionDetails)
+        public static void MakeBuyTransaction(List<AddProductToTransaction> listOfTransactions, ListOfProducts listOfProducts, String[] transactionDetails)
         {
             //I declare the variables here, to make sure they do not contain information from last line
-            //The transaction ID
-            uint transactionID;
+            //The product in transaction ID
+            uint productInTransactionID;
             //The product
             Product product;
             //The date of the transaction
@@ -219,20 +230,24 @@ namespace Dagligdagen
             int amountOfProducts;
             //The name of the product in case something should go wrong with the system
             string nameOfProduct;
+            //The amount of product
+            decimal amountOFUnitInProduct;
+            //The transaction ID
+            uint transactionID;
 
             try
             {
                 //The transaction ID, is used to identify the transaction later on
-                transactionID = UInt32.Parse(transactionDetails[transactioniDPlacementTransaction]);
+                productInTransactionID = UInt32.Parse(transactionDetails[productInTransactionIDPlacementProductInTransaction]);
             }
             catch (FormatException)
-            {
-                throw new FormatException($"The format of the transactionID {transactionDetails[transactioniDPlacementTransaction]} is invalid. ");
+            { 
+                throw new FormatException($"The format of the product in transaction ID {transactionDetails[productInTransactionIDPlacementProductInTransaction]} is invalid. ");
             }
             try
             {
                 //The product ID, is used to find the relevant product
-                uint productID = UInt32.Parse(transactionDetails[productIDPlacementTransaction]);
+                uint productID = UInt32.Parse(transactionDetails[productIDPlacementProductInTransaction]);
                 product = listOfProducts.FindProductByID(productID);
                 if (product == null)
                 {
@@ -241,7 +256,7 @@ namespace Dagligdagen
             }
             catch (FormatException)
             {
-                throw new FormatException($"The format of the prodcut ID {transactionDetails[productIDPlacementTransaction]} is invalid");
+                throw new FormatException($"The format of the prodcut ID {transactionDetails[productIDPlacementProductInTransaction]} is invalid");
             }
             catch (ElementDoesNotExistException)
             {
@@ -250,45 +265,45 @@ namespace Dagligdagen
             try
             {
                 //The date of the transaction
-                transactiondate = ParseStringToType.StringToDateTime(transactionDetails[datePlacementTransaction]);
+                transactiondate = ParseStringToType.StringToDateTime(transactionDetails[datePlacementProductInTransaction]);
             }
             catch
             {
-                throw new FormatException($"The transactiondate {transactionDetails[datePlacementTransaction]} is not valid");
+                throw new FormatException($"The transactiondate {transactionDetails[datePlacementProductInTransaction]} is not valid");
             }
             try
             {
                 //The fourth is the price
-                price = decimal.Parse(transactionDetails[amountOfMoneyPlacementTransaction]);
+                price = decimal.Parse(transactionDetails[amountOfMoneyPlacementProductInTransaction]);
             }
             catch
             {
-                throw new FormatException($"The string {transactionDetails[amountOfMoneyPlacementTransaction]} is not a valid decimal number, and can therefore not represent a price");
+                throw new FormatException($"The string {transactionDetails[amountOfMoneyPlacementProductInTransaction]} is not a valid decimal number, and can therefore not represent a price");
             }
             try
             {
                 //The fifth is the discount amount
-                discountAmount = decimal.Parse(transactionDetails[discountAmountPlacementTransaction]);
+                discountAmount = decimal.Parse(transactionDetails[discountAmountPlacementProductInTransaction]);
             }
             catch
             {
-                throw new FormatException($"The string {transactionDetails[discountAmountPlacementTransaction]} is not a valid decimal, and can not represent the discount amount");
+                throw new FormatException($"The string {transactionDetails[discountAmountPlacementProductInTransaction]} is not a valid decimal, and can not represent the discount amount");
             }
             try
             {
                 //The sixth one is the amount of products bought in this transaction
-                amountOfProducts = int.Parse(transactionDetails[amountOfProductsBoughtPlacementTransaction]);
+                amountOfProducts = int.Parse(transactionDetails[amountOfProductsBoughtPlacementProductInTransaction]);
             }
             catch
             {
-                throw new FormatException($"The string {transactionDetails[amountOfProductsBoughtPlacementTransaction]} is not a valid int, and can not be an amount of products");
+                throw new FormatException($"The string {transactionDetails[amountOfProductsBoughtPlacementProductInTransaction]} is not a valid int, and can not be an amount of products");
             }
             try
             {
                 //The name of the product in case something should go wrong with the ID system
-                nameOfProduct = transactionDetails[productNamePlacementTransaction];
+                nameOfProduct = transactionDetails[productNamePlacementProductInTransaction];
                 //The optional comment when purchace is made
-                comment = transactionDetails[commentPlacementTransaction];
+                comment = transactionDetails[commentPlacementProductInTransaction];
             }
             catch
             {
@@ -296,13 +311,39 @@ namespace Dagligdagen
             }
             try
             {
+                transactionID = uint.Parse(transactionDetails[transactionIDPlacementProductInTransaction]);
+            }
+            catch
+            {
+                throw new FormatException($"The string {transactionDetails[transactionIDPlacementProductInTransaction]} is not a valid uint and can therefore not be a transaction ID.");
+            }
+            try
+            {
+                amountOFUnitInProduct = decimal.Parse(transactionDetails[amountOfUnitPlacementProductInTransaction]);
+            } 
+            catch
+            {
+                throw new FormatException($"The string {transactionDetails[amountOfUnitPlacementProductInTransaction]} is not a valid decimal, and can therefore not be a unit amount");
+            }
+            try
+            {
                 //Here I add the transaction to the list
-                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, transactionID, transactiondate, amountOfProducts, comment, nameOfProduct));
+                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, productInTransactionID, transactiondate, amountOfProducts, comment, nameOfProduct, amountOFUnitInProduct, transactionID));
             }
             catch
             {
                 throw new FormatException("The product was not possible to make");
             }
+
+        }
+
+        public static List<MainTransaction> MakeTransaction(string path, string discardPath)
+        {
+            string[] linesInTransaction = System.IO.File.ReadAllLines(path);
+
+
+
+            return null;
         }
         #endregion
 

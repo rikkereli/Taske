@@ -10,22 +10,22 @@ namespace Dagligdagen
     /// <summary>
     /// Make sure the list of transactions is secure, and that every transaction has an unique ID 
     /// </summary>
-    public class ListOfTransactions : ListType, IEnumerable<Transaction>
+    public class ListOfTransactions : ListType, IEnumerable<AddProductToTransaction>
     {
         #region constructor
         /// <summary>
         /// Makes it possible to add a list when construction the list, so there is no problems with ID
         /// </summary>
         /// <param name="list"></param>
-        public ListOfTransactions(List<Transaction> listOfTransactions, string path)
+        public ListOfTransactions(List<AddProductToTransaction> listOfTransactions, string path)
         {
             pathToFile = path;
-            foreach (Transaction transaction in listOfTransactions)
+            foreach (AddProductToTransaction transaction in listOfTransactions)
             {
                 //So there is an unique iD
-                foreach (Transaction transactionAlreadyAdded in this.listOfTransactions)
+                foreach (AddProductToTransaction transactionAlreadyAdded in this.listOfTransactions)
                 {
-                    if (transactionAlreadyAdded.ID == iD)
+                    if (transactionAlreadyAdded.ThisElementID == iD)
                     {
                         throw new IDAlreadyTakenException($"The product ID {iD} is already taken");
                     }
@@ -33,9 +33,9 @@ namespace Dagligdagen
 
                 this.listOfTransactions.Add(transaction);
                 //Make sure that two ID's will never be the same
-                if (transaction.ID >= this.iD)
+                if (transaction.ThisElementID >= this.iD)
                 {
-                    this.iD = transaction.ID + 1;
+                    this.iD = transaction.ThisElementID + 1;
                 }
             }
         }
@@ -53,13 +53,13 @@ namespace Dagligdagen
         /// The path to the file where the transaction is
         /// </summary>
         string pathToFile;
-        private List<Transaction> listOfTransactions = new List<Transaction>();
+        private List<AddProductToTransaction> listOfTransactions = new List<AddProductToTransaction>();
 
-        private Transaction latestAdded;
+        private AddProductToTransaction latestAdded;
         /// <summary>
         /// Get the latest added transaction.
         /// </summary>
-        public Transaction LatestAdded
+        public AddProductToTransaction LatestAdded
         {
             get { return latestAdded; }
         }
@@ -75,12 +75,12 @@ namespace Dagligdagen
         /// <param name="discountAmount"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName)
+        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName, decimal amountOfUnitInThis, uint transactionID)
         {
             //TODO make it write to file
             try
             {
-                BuyTransaction transaction = new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName);
+                BuyTransaction transaction = new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName, amountOfUnitInThis, transactionID);
                 //TODO make the add transaction be different if it is an insert
                 listOfTransactions.Add(transaction);
                 iD++;
@@ -97,6 +97,7 @@ namespace Dagligdagen
         }
         #endregion
 
+
         #region Info
         /// <summary>
         /// Get the number of transactions on the list
@@ -109,7 +110,7 @@ namespace Dagligdagen
         /// <summary>
         /// Get a readonly copy of list
         /// </summary>
-        public IEnumerable<Transaction> TransactionList
+        public IEnumerable<AddProductToTransaction> TransactionList
         {
             get { return listOfTransactions; }
         }
@@ -121,11 +122,11 @@ namespace Dagligdagen
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public Transaction FindTransactionByID(uint ID)
+        public AddProductToTransaction FindTransactionByID(uint ID)
         {
-            foreach (Transaction transaction in listOfTransactions)
+            foreach (AddProductToTransaction transaction in listOfTransactions)
             {
-                if (transaction.ID == ID)
+                if (transaction.ThisElementID == ID)
                 {
                     return transaction;
                 }
@@ -135,7 +136,7 @@ namespace Dagligdagen
         #endregion
 
         #region IEnumarable
-        public IEnumerator<Transaction> GetEnumerator()
+        public IEnumerator<AddProductToTransaction> GetEnumerator()
         {
             return listOfTransactions.GetEnumerator();
         }

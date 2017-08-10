@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dagligdagen;
 using System.IO;
+using Xceed.Wpf.Toolkit;
 
 namespace Dagligdagen
 {
@@ -58,7 +59,7 @@ namespace Dagligdagen
 
         private void Product_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,7 +85,7 @@ namespace Dagligdagen
         {
             try
             {
-                
+
                 decimal price = decimal.Parse(PriceTX.Text);
                 Product product = (Product)ProductCombobox.SelectionBoxItem;
                 int amount = int.Parse(AmountTX.Text);
@@ -92,7 +93,7 @@ namespace Dagligdagen
                 ProductType productType = ParseStringToType.ProductType(TypeCombobox.Text);
                 DateTime dateTime = (DateTime)DateTimePicker.Value;
                 String comment = CommentTX.Text;
-                transactionList.AddBuyTransaction(price, product, discountAmount, dateTime, amount, comment, product.PrimaryProductName);
+                transactionList.AddBuyTransaction(price, product, discountAmount, dateTime, amount, comment, product.PrimaryProductName, 0, 0);
                 CommentTX.Text = transactionList.LatestAdded.ToString();
             }
             catch
@@ -159,9 +160,59 @@ namespace Dagligdagen
         /// <param name="e"></param>
         private void Make_Click(object sender, RoutedEventArgs e)
         {
-            productList.AddProduct(ProductName.Text, ParseStringToType.UnitType(UnitType.Text), ParseStringToType.ProductType(ProductType.Text));
-            ProductName.Text = productList.LastAdded.ToString();
-            Make_product.Visibility = Visibility.Hidden;
+            //TODO make check if productname exists
+            string productName = ProductNameTB.Text;
+            bool productNameEmpty = productName == "";
+            UnitType unittype = ParseStringToType.UnitType(UnitType.Text);
+            //Check if unittype is found
+            bool unitTypeNotFound = (unittype == Dagligdagen.UnitType.notFound);
+            ProductType productType = ParseStringToType.ProductType(ProductType.Text);
+            //´Check if producttype is found
+            bool productTypeNotFound = productType == Dagligdagen.ProductType.NotFound;
+
+            //Writes the problem out to the user
+            if (productNameEmpty || unitTypeNotFound || productTypeNotFound)
+            {
+                Error_field.Text = "";
+                if (productNameEmpty)
+                {
+                    Error_field.Text += "Productname can't be empty\n";
+                }
+                if (unitTypeNotFound)
+                {
+                    Error_field.Text += "You must have a valid unittype\n";
+                }
+                if (productTypeNotFound)
+                {
+                    Error_field.Text += "You must have a valid producttype\n";
+                }
+                Product_is_not_valid.Show();
+
+            }
+            else
+            {
+                productList.AddProduct(productName, unittype, productType);
+                ProductCombobox.Items.Add(productList.LastAdded);
+                Make_product.Close();
+            }
+        }
+        /// <summary>
+        /// Opens the add product from menu site
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MakeProductMenu(object sender, RoutedEventArgs e)
+        {
+            Make_product.Show();
+        }
+        /// <summary>
+        /// Opens the add product from transaction site
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddProductFromTransaction(object sender, RoutedEventArgs e)
+        {
+            Make_product.Show();
         }
     }
 }

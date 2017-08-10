@@ -5,3 +5,4 @@ C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\Dagligda
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDailyLife.csprojResolveAssemblyReference.cache
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDagligdag.dll
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\obj\Debug\TestDagligdag.pdb
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\TestDagligdag\bin\Debug\Xceed.Wpf.Toolkit.dll

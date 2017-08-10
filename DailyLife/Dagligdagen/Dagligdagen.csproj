@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\MainTransaction.cs" />
     <Compile Include="MainWindowWpf.xaml.cs">
       <DependentUpon>MainWindowWpf.xaml</DependentUpon>
     </Compile>
@@ -100,7 +101,7 @@
     <Compile Include="Mechanics\ReadFromFiles.cs" />
     <Compile Include="Elements\BuyTransaction.cs" />
     <Compile Include="Mechanics\TempTestClass.cs" />
-    <Compile Include="Elements\Transaction.cs" />
+    <Compile Include="Elements\AddProductToTransaction.cs" />
     <Compile Include="Enums\UnitType.cs" />
     <Compile Include="UI\UserInterfaceConsole.cs" />
   </ItemGroup>

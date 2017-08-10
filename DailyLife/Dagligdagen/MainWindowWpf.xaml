@@ -19,10 +19,10 @@
             <ComboBoxItem x:Name="MoodMenu" Content="Mood" Height="26" Width="43" FontWeight="Bold"/>
         </Menu>
         <Grid x:Name="BudgetGrid" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="280" Margin="10,31,0,0" VerticalAlignment="Top" Width="498">
-            <ProgressBar x:Name="See_how_much_of_the_budget_is_used" HorizontalAlignment="Left" Height="350" Margin="520,0,-54,-70" VerticalAlignment="Top" Width="32" Background="#FFCAB1B1"/>
+            <ProgressBar x:Name="See_how_much_of_the_budget_is_used" HorizontalAlignment="Left" Height="350" Margin="525,-13,-59,-57" VerticalAlignment="Top" Width="32" Background="#FFCAB1B1"/>
             <Image x:Name="image" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
             <Menu x:Name="BudgetMenu" HorizontalAlignment="Left" Height="340" Margin="-12,-5,0,-55" VerticalAlignment="Top" Width="112" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Background="White" BorderThickness="3,0" RenderTransformOrigin="0.5,0.5" FontFamily="Arial">
-                <Button BorderBrush="White" Background="White" Content="Make product" Click="Button_Click_1" Margin="0,10,0,0"/>
+                <Button BorderBrush="White" Background="White" Content="Make product" Click="MakeProductMenu" Margin="0,10,0,0"/>
                 <Button BorderBrush="White" Background="White" Content="Make transaction">
                     <Button.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -36,7 +36,7 @@
                 <Button BorderBrush="White" Background="White" Content="Set budget" Foreground="Black"/>
                 <Button Content="Fixed payments" BorderBrush="White" Background="White"/>
             </Menu>
-            <Grid x:Name="AddProductToTransaction" HorizontalAlignment="Left" Height="335" Margin="105,0,-17,-55" VerticalAlignment="Top" Width="410" Background="White" Visibility="Hidden">
+            <Grid x:Name="AddProductToTransaction" HorizontalAlignment="Left" Height="322" Margin="115,-5,-27,-37" VerticalAlignment="Top" Width="410" Background="White" d:IsHidden="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="135*"/>
                     <ColumnDefinition Width="5*"/>
@@ -84,14 +84,14 @@
                 </ComboBox>
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="20" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"><Run Text="Amount"/><Run Text=" of products"/><Run Text=":"/></TextBlock>
                 <TextBox x:Name="AmountTX" HorizontalAlignment="Left" Height="21" Margin="172,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Grid.ColumnSpan="3" ToolTip="The amount of products bought"/>
-                <Button x:Name="AddProduct" Content="+" HorizontalAlignment="Left" Height="22" Margin="39.4,61,0,0" VerticalAlignment="Top" Width="46" ToolTip="Add new product" Grid.Column="2"/>
+                <Button x:Name="AddProduct" Content="+" HorizontalAlignment="Left" Height="22" Margin="39.4,61,0,0" VerticalAlignment="Top" Width="46" ToolTip="Add new product" Grid.Column="2" Click="AddProductFromTransaction"/>
                 <TextBlock x:Name="DateTime" HorizontalAlignment="Left" Height="18" Margin="10,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92"><Run Text="Time"/><Run Text=" and date"/><Run Text=":"/></TextBlock>
                 <xctk:DateTimePicker x:Name="DateTimePicker" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="23" Margin="115,218,0,0" VerticalAlignment="Top" Width="163"/>
                 <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Height="21" Margin="9,114,0,0" TextWrapping="Wrap" Text="Amount in product" VerticalAlignment="Top" Width="119"/>
                 <TextBox x:Name="textBox" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="20" Margin="172,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" ToolTip="The amount of product in the products choosen unittype. Fx if you bought two ½ liter milk, you would write 0.5, and two in amount of products"/>
             </Grid>
         </Grid>
-        <xctk:ChildWindow x:Name="Make_product" HorizontalAlignment="Left" Height="162" Margin="188,76,0,0" VerticalAlignment="Top" Width="255" Grid.ColumnSpan="2" WindowBackground="#FFFA8AEB" CaptionForeground="#FFE8D1D1" CaptionShadowBrush="#FFDACDCD" Foreground="Black" OverlayBrush="#FFAB70E8" WindowBorderBrush="White" WindowInactiveBackground="#FFEEC6C6" Background="White" BorderBrush="#FFFFCFAB">
+        <xctk:ChildWindow x:Name="Make_product" HorizontalAlignment="Left" Height="162" Margin="198,54,0,0" VerticalAlignment="Top" Width="255" Grid.ColumnSpan="3" WindowBackground="#FFFA8AEB" CaptionForeground="#FFE8D1D1" CaptionShadowBrush="#FFDACDCD" Foreground="Black" OverlayBrush="#FFAB70E8" WindowBorderBrush="White" WindowInactiveBackground="#FFEEC6C6" Background="White" BorderBrush="#FFFFCFAB" d:IsHidden="True">
             <Grid x:Name="Add_product" HorizontalAlignment="Left" Height="81" Margin="0,0,-4,0" VerticalAlignment="Top" Width="348">
                 <TextBlock x:Name="ProductName" HorizontalAlignment="Left" Height="18" Margin="10,10,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Width="55"/>
                 <TextBlock x:Name="ProductType1" HorizontalAlignment="Left" Height="26" Margin="10,37,0,0" TextWrapping="Wrap" Text="Product type" VerticalAlignment="Top" Width="94"/>
@@ -126,6 +126,9 @@
                 </ComboBox>
                 <Button x:Name="Make" Content="Make product" HorizontalAlignment="Left" Margin="86,100,0,-40" VerticalAlignment="Top" Width="101" Height="21" Click="Make_Click"/>
             </Grid>
+        </xctk:ChildWindow>
+        <xctk:ChildWindow x:Name="Product_is_not_valid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="182,101,0,0" Grid.ColumnSpan="2" Height="139" Width="261" Panel.ZIndex="5" d:IsHidden="True">
+            <TextBlock x:Name="Error_field" Height="89" Margin="10" TextWrapping="Wrap" Text="Error"/>
         </xctk:ChildWindow>
     </Grid>
 </Window>

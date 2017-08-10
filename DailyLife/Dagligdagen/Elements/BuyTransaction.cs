@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dagligdagen
 {
-    class BuyTransaction : Transaction
+    class BuyTransaction : AddProductToTransaction
     {
         #region Proporties
         #region Price
@@ -89,7 +89,7 @@ namespace Dagligdagen
         /// <param name="iD"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public BuyTransaction(decimal price, Product product, decimal discountAmount, uint iD, DateTime date, int amount, string comment, string productName) : base (product, price, date, iD, comment)
+        public BuyTransaction(decimal price, Product product, decimal discountAmount, uint iD, DateTime date, int amount, string comment, string productName, decimal amountOfProductUnit, uint transactionID) : base (product, price, date, iD, comment, amountOfProductUnit,transactionID)
         {
             DiscountAmount = discountAmount;
             Amount = amount;
@@ -103,7 +103,7 @@ namespace Dagligdagen
         /// <returns></returns>
         public override string FileFormat()
         {
-            return $"Buy;{ID};{Product.ID};{date};{price};{ProductName};{comment};{discountAmount};{amount}";
+            return $"Buy;{ThisElementID};{Product.ID};{date};{price};{ProductName};{comment};{discountAmount};{amount}";
         }
     }
 }

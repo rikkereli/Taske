@@ -31,8 +31,8 @@ namespace Dagligdagen
             {
                 Console.WriteLine(product);
             }
-            Console.WriteLine(Transaction.TableExplanation());
-            foreach (Transaction transaction in transactions)
+            Console.WriteLine(AddProductToTransaction.TableExplanation());
+            foreach (AddProductToTransaction transaction in transactions)
             {
                 Console.WriteLine(transaction);
             }
