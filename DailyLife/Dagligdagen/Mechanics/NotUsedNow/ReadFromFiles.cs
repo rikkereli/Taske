@@ -94,14 +94,14 @@ namespace Dagligdagen
             string explantion = null;
             string[] productDetails = line.Split(';');
             //The product ID
-            uint ID = 0;
+            int ID = 0;
             //The primary productname
             string name = "";
             //TODO make better standard for this
             //The product type
-            ProductType productType = ProductType.Food;
+            string productType = "Food";
             //The type of unit you messure the product with
-            UnitType unitType = UnitType.piece;
+            string unitType = "piece";
             #endregion
 
             #region Make Product
@@ -111,7 +111,7 @@ namespace Dagligdagen
                 #region ID
                 try
                 {
-                    ID = uint.Parse(productDetails[productIDPlacement]);
+                    ID = int.Parse(productDetails[productIDPlacement]);
                 }
                 catch
                 {
@@ -122,22 +122,14 @@ namespace Dagligdagen
                 name = productDetails[primaryProductNamePlacement];
                 #region Find producttype
                 //Find the relevant producttype
-                productType = ParseStringToType.ProductType(productDetails[productTypePlacement]);
+                productType = productDetails[productTypePlacement];
 
-                //Makes sure there is an error when producttype not found
-                if (productType == ProductType.NotFound)
-                {
-                    explantion += $"ProductType: The string {productDetails[productTypePlacement]} is not a valid type. ";
-                }
+
                 #endregion
                 #region Make unit type
                 //Find the propor unit type
-                unitType = ParseStringToType.UnitType(productDetails[productUnitTypePlacement]);
+                unitType = productDetails[productUnitTypePlacement];
 
-                if (unitType == UnitType.notFound)
-                {
-                    explantion += $"The string {productDetails[productUnitTypePlacement]} is not a valid unittype. ";
-                }
                 #endregion
             }
             else
@@ -215,7 +207,7 @@ namespace Dagligdagen
         {
             //I declare the variables here, to make sure they do not contain information from last line
             //The product in transaction ID
-            uint productInTransactionID;
+            int productInTransactionID;
             //The product
             Product product;
             //The date of the transaction
@@ -233,12 +225,12 @@ namespace Dagligdagen
             //The amount of product
             decimal amountOFUnitInProduct;
             //The transaction ID
-            uint transactionID;
+            int transactionID;
 
             try
             {
                 //The transaction ID, is used to identify the transaction later on
-                productInTransactionID = UInt32.Parse(transactionDetails[productInTransactionIDPlacementProductInTransaction]);
+                productInTransactionID = int.Parse(transactionDetails[productInTransactionIDPlacementProductInTransaction]);
             }
             catch (FormatException)
             { 
@@ -311,7 +303,7 @@ namespace Dagligdagen
             }
             try
             {
-                transactionID = uint.Parse(transactionDetails[transactionIDPlacementProductInTransaction]);
+                transactionID = int.Parse(transactionDetails[transactionIDPlacementProductInTransaction]);
             }
             catch
             {

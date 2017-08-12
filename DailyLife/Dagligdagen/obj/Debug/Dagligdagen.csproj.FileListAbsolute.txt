@@ -26,3 +26,11 @@ C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\ru\Xceed.W
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\obj\Debug\Dagligdagen.csprojResolveAssemblyReference.cache
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\EntityFramework.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\System.Data.SQLite.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\EntityFramework.xml
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Rikke\Documents\GitHub\Taske\DailyLife\Dagligdagen\bin\Debug\System.Data.SQLite.xml

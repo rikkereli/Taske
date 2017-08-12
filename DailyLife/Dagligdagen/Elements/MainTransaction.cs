@@ -8,11 +8,11 @@ namespace Dagligdagen
 {
     public class MainTransaction
     {
-        private uint iD;
+        private int iD;
         /// <summary>
         /// The unique head transaction ID
         /// </summary>
-        public uint ID
+        public int ID
         {
             get { return iD; }
         }

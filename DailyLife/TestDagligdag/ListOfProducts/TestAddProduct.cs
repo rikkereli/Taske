@@ -1,7 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dagligdagen;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 
 namespace TestDagligdag
 {
@@ -17,7 +18,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfStartProductCountIsZero()
         {
-            ListOfProducts productList = new ListOfProducts(null);
+            ListOfProducts productList = new ListOfProducts(new List<Product>(),new SQLiteConnection("Sti"));
             Assert.AreEqual(productList.NumberOfProducts, 0);
         }
         /// <summary>
@@ -26,7 +27,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductIsAdded()
         {
-            ListOfProducts productList = new ListOfProducts(new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food)},null);
+            ListOfProducts productList = new ListOfProducts(new List<Product>() { new Product(1, "Mælk", "l", "Food")},null);
             Assert.AreEqual(productList.NumberOfProducts, 1);
         }
     }

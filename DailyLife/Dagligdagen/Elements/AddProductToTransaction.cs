@@ -11,7 +11,7 @@ namespace Dagligdagen
     public abstract class AddProductToTransaction
     {
         #region Constructor
-        public AddProductToTransaction(Product product, decimal amountOfMoney, DateTime date, uint thisProductID, string comment, decimal amountOfUnit, uint transactionID)
+        public AddProductToTransaction(Product product, decimal amountOfMoney, DateTime date, int thisProductID, string comment, decimal amountOfUnit, int transactionID)
         {
             AmountOfMoney = amountOfMoney;
             Date = date;
@@ -25,20 +25,20 @@ namespace Dagligdagen
 
         #region Proporty
         #region ID
-        private uint thisElementID;
+        private int thisElementID;
         /// <summary>
         /// The transaction ID
         /// </summary>
-        public uint ThisElementID
+        public int ThisElementID
         {
             get { return thisElementID; }
         }
 
-        private uint transactionID;
+        private int transactionID;
         /// <summary>
         /// The ID for the transaction this belongs to
         /// </summary>
-        public uint TransactionID
+        public int TransactionID
         {
             get { return transactionID;}
         }

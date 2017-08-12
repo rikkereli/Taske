@@ -10,7 +10,7 @@ namespace Dagligdagen
         /// <summary>
         /// Make sure you can make unique iD;
         /// </summary>
-        protected uint iD = 1;
+        protected int iD = 1;
 
     }
 }

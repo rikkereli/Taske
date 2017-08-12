@@ -17,9 +17,9 @@ namespace Dagligdagen
             string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Products\\TestProductsWithTwoProductsIsRight.txt";
             string standardDiscardProductFile = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\WriteToProducts\\StandardDiscardProductFile.txt";
             System.IO.File.WriteAllText(standardDiscardProductFile, string.Empty);
-            ListOfProducts listOfProducts = new ListOfProducts(productFilePath);
-            listOfProducts.AddProduct("Mælk", UnitType.l, ProductType.Food);
-            listOfProducts.AddProduct("Kage", UnitType.kg, ProductType.Snack);
+            ListOfProducts listOfProducts = new ListOfProducts(null);
+            listOfProducts.AddProduct("Mælk", "l", "Food");
+            listOfProducts.AddProduct("Kage", "kg", "Snack");
             ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts, standardDiscardProductFile), transactionFilePath);
 
             List<Product> products = ReadFromFiles.ReadFromProductfileToListOfProducts(productFilePath, standardDiscardProductFile);
@@ -40,12 +40,12 @@ namespace Dagligdagen
         
         static public void TestIfProgramRuns()
         {
-            string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Transactions.txt";
-            string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Products.txt";
-            string discardedTransactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedTransactions.txt";
-            string discardedProductFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedProducts.txt";
-            UserInterfaceConsole uI = new UserInterfaceConsole(new DailyLifeSystem(productFilePath, discardedProductFilePath, transactionFilePath, discardedTransactionFilePath));
-            uI.Run();
+            //string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Transactions.txt";
+            //string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Products.txt";
+            //string discardedTransactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedTransactions.txt";
+            //string discardedProductFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedProducts.txt";
+            //UserInterfaceConsole uI = new UserInterfaceConsole(new DailyLifeSystem(productFilePath, discardedProductFilePath, transactionFilePath, discardedTransactionFilePath));
+            //uI.Run();
         }
 
         static public void TestIfDelegateWorks()

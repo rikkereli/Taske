@@ -75,7 +75,7 @@ namespace Dagligdagen
         /// <param name="discountAmount"></param>
         /// <param name="date"></param>
         /// <param name="amount"></param>
-        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName, decimal amountOfUnitInThis, uint transactionID)
+        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName, decimal amountOfUnitInThis, int transactionID)
         {
             //TODO make it write to file
             try

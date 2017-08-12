@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,9 +19,9 @@ namespace Dagligdagen
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
         /// <param name="productType"></param>
-        public ListOfProducts(List<Product> products, string path)
+        public ListOfProducts(List<Product> products, SQLiteConnection dataTable)
         {
-            this.path = path;
+            this.datatableWithProducts = dataTable;
             foreach (Product product in products)
             {
                 //So there is a unique iD
@@ -41,9 +43,9 @@ namespace Dagligdagen
         /// <summary>
         /// Makes it possible to make a new list without neding 
         /// </summary>
-        public ListOfProducts(string path)
+        public ListOfProducts(SQLiteConnection dataTable)
         {
-            this.path = path;
+                this.datatableWithProducts = dataTable;
         }
         #endregion
 
@@ -52,6 +54,10 @@ namespace Dagligdagen
         /// The list containing all the products
         /// </summary>
         private List<Product> listOfProducts = new List<Product>();
+        /// <summary>
+        /// The datatable containing these products
+        /// </summary>
+        public SQLiteConnection datatableWithProducts;
         #endregion
 
         #region Info
@@ -63,10 +69,7 @@ namespace Dagligdagen
         {
             get { return lastAdded; }
         }
-        /// <summary>
-        /// The path to the file with products
-        /// </summary>
-        string path;
+
         //Send back a readonly list
         public IEnumerable<Product>  ProductList
         {
@@ -88,15 +91,15 @@ namespace Dagligdagen
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
         /// <param name="productType"></param>
-        public void AddProduct(string primaryProductName, UnitType typeOfUnit, ProductType productType)
+        public void AddProduct(string primaryProductName, string typeOfUnit, string productType)
         {
-            Product product = new Product(iD, primaryProductName, typeOfUnit, productType);
+            Product product = new Product(this.iD, primaryProductName, typeOfUnit, productType);
             listOfProducts.Add(product);
-            iD++;
             lastAdded = product;
-            StreamWriter streamwriter = new StreamWriter(path, true);
-            streamwriter.WriteLine(product.FileFormat());
-            streamwriter.Close();
+            //Write the new product to table
+            InteractWithDatabase.SelectQuery($"INSERT INTO Products VALUES({this.iD},'{primaryProductName}','{productType}','{typeOfUnit}');", datatableWithProducts);
+            //Make sure the next product gets new ID
+            this.iD++;
         }
         #endregion
 

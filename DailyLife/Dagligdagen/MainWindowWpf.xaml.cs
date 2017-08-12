@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Dagligdagen;
 using System.IO;
 using Xceed.Wpf.Toolkit;
+using System.Data;
+using System.Data.SQLite;
 
 namespace Dagligdagen
 {
@@ -27,28 +29,20 @@ namespace Dagligdagen
         private ListOfProducts productList;
         private ListOfTransactions transactionList;
 
+        private SQLiteConnection sqlite = new SQLiteConnection("Data Source=C:/Users/Rikke/Documents/GitHub/Taske/DailyLife/Database/MyDatabase.db");
         #endregion
 
         public MainWindowWpf()
         {
-            InitializeComponent();
-            string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Transactions.txt";
-            string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\Products.txt";
-            string discardedTransactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedTransactions.txt";
-            string discardedProductFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\DiscardedProducts.txt";
 
-            productList = new ListOfProducts(ReadFromFiles.ReadFromProductfileToListOfProducts(productFilePath, discardedProductFilePath), productFilePath);
-            transactionList = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, productList, discardedTransactionFilePath), transactionFilePath);
+            InitializeComponent();
+            DataTable TableWithProducts = InteractWithDatabase.SelectQuery("Select * From Products", sqlite);
+            productList = new ListOfProducts(InteractWithDatabase.ProductTableToListOfProducts(TableWithProducts), sqlite);
+            transactionList = new ListOfTransactions(null);
 
             //Make the buttons in the product combobox
             foreach (Product product in productList.ProductList)
             {
-                /*
-                Button b = new Button();
-                b.Content = product.PrimaryProductName;
-                b.TabIndex = (int)product.ID + 3;
-                ProductCombobox.Items.Add(b);
-                */
                 ProductCombobox.Items.Add(product);
             }
 
@@ -163,31 +157,18 @@ namespace Dagligdagen
             //TODO make check if productname exists
             string productName = ProductNameTB.Text;
             bool productNameEmpty = productName == "";
-            UnitType unittype = ParseStringToType.UnitType(UnitType.Text);
+            string unittype = UnitType.Text;
             //Check if unittype is found
-            bool unitTypeNotFound = (unittype == Dagligdagen.UnitType.notFound);
-            ProductType productType = ParseStringToType.ProductType(ProductType.Text);
-            //´Check if producttype is found
-            bool productTypeNotFound = productType == Dagligdagen.ProductType.NotFound;
+            string productType = ProductType.Text;
 
             //Writes the problem out to the user
-            if (productNameEmpty || unitTypeNotFound || productTypeNotFound)
+            if (productNameEmpty)
             {
                 Error_field.Text = "";
-                if (productNameEmpty)
-                {
-                    Error_field.Text += "Productname can't be empty\n";
-                }
-                if (unitTypeNotFound)
-                {
-                    Error_field.Text += "You must have a valid unittype\n";
-                }
-                if (productTypeNotFound)
-                {
-                    Error_field.Text += "You must have a valid producttype\n";
-                }
-                Product_is_not_valid.Show();
 
+                Error_field.Text += "Productname can't be empty\n";
+
+                Product_is_not_valid.Show();
             }
             else
             {

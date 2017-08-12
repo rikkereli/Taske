@@ -60,8 +60,8 @@ namespace Dagligdagen
         {
             string productName;
 
-            UnitType unitType;
-            ProductType productType;
+            string unitType;
+            string productType;
 
             Console.WriteLine("Enter the product name: ");
             productName = Console.ReadLine();
@@ -69,22 +69,25 @@ namespace Dagligdagen
             //Makes the unittype
             Console.WriteLine("Enter the unittype: ");
             string writtenUnitType = Console.ReadLine();
-            unitType = ParseStringToType.UnitType(writtenUnitType);
+            unitType = writtenUnitType;
+            /*
             while (unitType == UnitType.notFound)
             {
                 //MAkes sure a valid unittype is added
                 unitType = ParseStringToType.UnitType(InvalidArgument(writtenUnitType, "a unittype"));
             }
+            */
             //Make the producttype
             Console.WriteLine("Enter the producttype");
             string writtenProductType = Console.ReadLine();
-            productType = ParseStringToType.ProductType(writtenProductType);
+            productType = writtenProductType;
+            /*
             while (productType == ProductType.NotFound)
             {
                 //Makes sure a valid producttype is added
                 productType = ParseStringToType.ProductType(InvalidArgument(writtenProductType, "producttype"));
             }
-
+            */
             system.listOfProducts.AddProduct(productName, unitType, productType);
         }
         #endregion
@@ -148,7 +151,7 @@ namespace Dagligdagen
             Console.WriteLine("Enter comment");
             comment = Console.ReadLine();
 
-            system.listOfTransactions.AddBuyTransaction(price, product, discoundAmount, date, amount, comment, productName);
+            system.listOfTransactions.AddBuyTransaction(price, product, discoundAmount, date, amount, comment, productName, 0, 0);
         }
         /// <summary>
         /// Used to exit program

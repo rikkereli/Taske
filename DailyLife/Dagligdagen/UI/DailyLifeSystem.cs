@@ -22,13 +22,6 @@ namespace Dagligdagen
         public ListOfTransactions listOfTransactions;
         #endregion
 
-        #region Placements
-        string listOfProductsFilePlacement;
-        string listOfTransactionsFilePlacement;
-        string listOfDiscardedTransactionsFilePlacement;
-        string listOfDiscardedProductFilePlacement;
-        #endregion
-
         /// <summary>
         /// The constructor, nedds the lists
         /// </summary>
@@ -36,18 +29,9 @@ namespace Dagligdagen
         /// <param name="fileWithDiscardedProductPlacement"></param>
         /// <param name="fileWithTransactionsPlacement"></param>
         /// <param name="fileWithDiscardedTransactionsPlacement"></param>
-        public DailyLifeSystem(string fileWithProductPlacement, string fileWithDiscardedProductPlacement, string fileWithTransactionsPlacement, string fileWithDiscardedTransactionsPlacement)
+        public DailyLifeSystem()
         {
-            //Makes a list of products with the content of a file
-            listOfProducts = new ListOfProducts(ReadFromFiles.ReadFromProductfileToListOfProducts(fileWithProductPlacement, fileWithDiscardedProductPlacement), fileWithProductPlacement);
-            //Makes a list of Transactions with the content of a file and the list of products
-            listOfTransactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(fileWithTransactionsPlacement, listOfProducts, listOfDiscardedProductFilePlacement),fileWithTransactionsPlacement);
 
-            //Save the placements of the paths
-            listOfProductsFilePlacement = fileWithProductPlacement;
-            listOfTransactionsFilePlacement = fileWithTransactionsPlacement;
-            listOfDiscardedProductFilePlacement = fileWithDiscardedProductPlacement;
-            listOfDiscardedTransactionsFilePlacement = fileWithDiscardedTransactionsPlacement;
         }
 
 

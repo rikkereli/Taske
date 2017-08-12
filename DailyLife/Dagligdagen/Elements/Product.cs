@@ -11,7 +11,7 @@ namespace Dagligdagen
     public class Product
     {
         #region Constructor
-        public Product(uint iD, string primaryProductName, UnitType typeOfunit, ProductType productType)
+        public Product(int iD, string primaryProductName, string typeOfunit, string productType)
         {
             this.iD = iD;
             PrimaryProductName = primaryProductName;
@@ -23,34 +23,34 @@ namespace Dagligdagen
         #region Proporties
 
         #region ProductType
-        private ProductType productType;
+        private string productType;
         /// <summary>
         /// The product's type
         /// </summary>
-        public ProductType TypeOfProduct
+        public string TypeOfProduct
         {
             get { return productType; }
         }
         #endregion
 
         #region UnitType
-        private UnitType typeOfunit;
+        private string typeOfunit;
         /// <summary>
         /// The default type the product is messured in
         /// </summary>
-        public UnitType TypeOfUnit
+        public string TypeOfUnit
         {
             get { return TypeOfUnit; }
         }
         #endregion
 
         #region ID
-        private uint iD;
-        /// <summary>
+        private int iD;
+        /// <int>
         /// The unique ID for this product.
         /// </summary>
         /// To make sure the product ID is not changed after initialization. 
-        public uint ID
+        public int ID
         {
             get { return iD; }
         }
