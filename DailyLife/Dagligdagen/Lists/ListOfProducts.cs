@@ -19,9 +19,9 @@ namespace Dagligdagen
         /// <param name="primaryProductName"></param>
         /// <param name="typeOfUnit"></param>
         /// <param name="productType"></param>
-        public ListOfProducts(List<Product> products, SQLiteConnection dataTable)
+        public ListOfProducts(List<Product> products, IUserinterface UI)
         {
-            this.datatableWithProducts = dataTable;
+            userInterface = UI;
             foreach (Product product in products)
             {
                 //So there is a unique iD
@@ -36,16 +36,16 @@ namespace Dagligdagen
 
                 if (product.ID >= this.iD)
                 {
-                    this.iD = iD + 1;
+                    this.iD = product.ID + 1;
                 }
             }
         }
         /// <summary>
         /// Makes it possible to make a new list without neding 
         /// </summary>
-        public ListOfProducts(SQLiteConnection dataTable)
+        public ListOfProducts(IUserinterface UI)
         {
-                this.datatableWithProducts = dataTable;
+            userInterface = UI;
         }
         #endregion
 
@@ -54,10 +54,11 @@ namespace Dagligdagen
         /// The list containing all the products
         /// </summary>
         private List<Product> listOfProducts = new List<Product>();
+
         /// <summary>
-        /// The datatable containing these products
+        /// The user interface
         /// </summary>
-        public SQLiteConnection datatableWithProducts;
+        public IUserinterface userInterface;
         #endregion
 
         #region Info
@@ -96,8 +97,10 @@ namespace Dagligdagen
             Product product = new Product(this.iD, primaryProductName, typeOfUnit, productType);
             listOfProducts.Add(product);
             lastAdded = product;
-            //Write the new product to table
-            InteractWithDatabase.SelectQuery($"INSERT INTO Products VALUES({this.iD},'{primaryProductName}','{productType}','{typeOfUnit}');", datatableWithProducts);
+
+            //Add the product to the list
+            userInterface.AddProductToProductTable(this.iD, primaryProductName, typeOfUnit, productType);
+
             //Make sure the next product gets new ID
             this.iD++;
         }

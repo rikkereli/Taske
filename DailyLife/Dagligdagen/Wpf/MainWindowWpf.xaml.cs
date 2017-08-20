@@ -26,26 +26,24 @@ namespace Dagligdagen
     public partial class MainWindowWpf : Window, System.Windows.Markup.IComponentConnector
     {
         #region Fields 
-        private ListOfProducts productList;
-        private ListOfTransactions transactionList;
 
-        private SQLiteConnection sqlite = new SQLiteConnection("Data Source=C:/Users/Rikke/Documents/GitHub/Taske/DailyLife/Database/MyDatabase.db");
+        /// <summary>
+        /// The UI connected to this project
+        /// </summary>
+        IUserinterface UI;
         #endregion
 
         public MainWindowWpf()
         {
-
             InitializeComponent();
-            DataTable TableWithProducts = InteractWithDatabase.SelectQuery("Select * From Products", sqlite);
-            productList = new ListOfProducts(InteractWithDatabase.ProductTableToListOfProducts(TableWithProducts), sqlite);
-            transactionList = new ListOfTransactions(null);
+            UI = new SqlitefUI("Products", "MainBuyTransaction", "ProductAddedBuyTransaction", "Data Source=C:/Users/Rikke/Documents/GitHub/Taske/DailyLife/Database/MyDatabase.db");
+
 
             //Make the buttons in the product combobox
-            foreach (Product product in productList.ProductList)
+            foreach (Product product in UI.ProductList.ProductList)
             {
                 ProductCombobox.Items.Add(product);
             }
-
         }
 
         //The fields in the make transaction
@@ -75,20 +73,23 @@ namespace Dagligdagen
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Finish_Click(object sender, RoutedEventArgs e)
+        private void FinishAddProductToTransaction(object sender, RoutedEventArgs e)
         {
             try
             {
 
                 decimal price = decimal.Parse(PriceTX.Text);
                 Product product = (Product)ProductCombobox.SelectionBoxItem;
-                int amount = int.Parse(AmountTX.Text);
+                int amountOfProduct = int.Parse(AmountTX.Text);
+                decimal amountOfUnitInProduct = decimal.Parse(amountOfUnitInProductTBoxAddProductToTransaction.Text);
                 decimal discountAmount = decimal.Parse(DiscountAmountTX.Text);
                 ProductType productType = ParseStringToType.ProductType(TypeCombobox.Text);
-                DateTime dateTime = (DateTime)DateTimePicker.Value;
+                //TODO add type of purchase 
                 String comment = CommentTX.Text;
-                transactionList.AddBuyTransaction(price, product, discountAmount, dateTime, amount, comment, product.PrimaryProductName, 0, 0);
-                CommentTX.Text = transactionList.LatestAdded.ToString();
+                //Always make transaction ID 1, because it is not importaint before we make the real transaction
+                //TODO make remove transaction option
+                UI.TempTransaction.AddProductToMainBuyTransactionOnMakingTransaction(price,product,discountAmount,amountOfProduct,comment,product.PrimaryProductName,amountOfUnitInProduct,1,"");
+                CommentTX.Text = UI.TempTransaction.LatestAdded.ToString();// TODO remove this when not needed
             }
             catch
             {
@@ -162,6 +163,7 @@ namespace Dagligdagen
             string productType = ProductType.Text;
 
             //Writes the problem out to the user
+            //TODO make error if checkbox is empty
             if (productNameEmpty)
             {
                 Error_field.Text = "";
@@ -172,8 +174,8 @@ namespace Dagligdagen
             }
             else
             {
-                productList.AddProduct(productName, unittype, productType);
-                ProductCombobox.Items.Add(productList.LastAdded);
+                UI.ProductList.AddProduct(productName, unittype, productType);
+                ProductCombobox.Items.Add(UI.ProductList.LastAdded);
                 Make_product.Close();
             }
         }
@@ -194,6 +196,18 @@ namespace Dagligdagen
         private void AddProductFromTransaction(object sender, RoutedEventArgs e)
         {
             Make_product.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (MainTransaction.IsVisible)
+            {
+                MainTransaction.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MainTransaction.Visibility = Visibility.Visible;
+            }
         }
     }
 }

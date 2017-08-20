@@ -11,10 +11,9 @@ namespace Dagligdagen
     public abstract class AddProductToTransaction
     {
         #region Constructor
-        public AddProductToTransaction(Product product, decimal amountOfMoney, DateTime date, int thisProductID, string comment, decimal amountOfUnit, int transactionID)
+        public AddProductToTransaction(Product product, decimal amountOfMoney, int thisProductID, string comment, decimal amountOfUnit, int transactionID)
         {
             AmountOfMoney = amountOfMoney;
-            Date = date;
             this.thisElementID = thisProductID;
             this.product = product;
             this.comment = comment;
@@ -75,28 +74,6 @@ namespace Dagligdagen
         public abstract decimal AmountOfMoney { get; set; }
         #endregion
 
-        #region Date
-        protected DateTime date;
-        /// <summary>
-        /// The date of the transaction
-        /// </summary>
-        public DateTime Date
-        {
-            get { return date; }
-            set
-            {
-                if (value != null)
-                {
-                    date = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("The date of a transaction can't be null");
-                }
-            }
-        }
-        #endregion
-
         #region Comment
         protected string comment;
         /// <summary>
@@ -127,7 +104,7 @@ namespace Dagligdagen
         }
         public override string ToString()
         {
-            return $"{thisElementID} | {product.PrimaryProductName} | {AmountOfMoney} | {Date} | {comment}";
+            return $"{thisElementID} | {product.PrimaryProductName} | {AmountOfMoney} | {comment}";
         }
         /// <summary>
         /// The format the transaction is to be written with in the file

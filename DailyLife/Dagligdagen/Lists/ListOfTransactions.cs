@@ -17,9 +17,9 @@ namespace Dagligdagen
         /// Makes it possible to add a list when construction the list, so there is no problems with ID
         /// </summary>
         /// <param name="list"></param>
-        public ListOfTransactions(List<AddProductToTransaction> listOfTransactions, string path)
+        public ListOfTransactions(List<AddProductToTransaction> listOfTransactions, IUserinterface UI)
         {
-            pathToFile = path;
+            this.UI = UI;
             foreach (AddProductToTransaction transaction in listOfTransactions)
             {
                 //So there is an unique iD
@@ -42,17 +42,17 @@ namespace Dagligdagen
         /// <summary>
         /// Makes it possible to not add a list when construction a list of transactions
         /// </summary>
-        public ListOfTransactions(string path)
+        public ListOfTransactions(IUserinterface UI)
         {
-            pathToFile = path;
+            this.UI = UI;
         }
         #endregion
 
         #region Fields and proporties
         /// <summary>
-        /// The path to the file where the transaction is
+        /// The UI this transaction is in
         /// </summary>
-        string pathToFile;
+        IUserinterface UI;
         private List<AddProductToTransaction> listOfTransactions = new List<AddProductToTransaction>();
 
         private AddProductToTransaction latestAdded;
@@ -74,29 +74,21 @@ namespace Dagligdagen
         /// <param name="product"></param>
         /// <param name="discountAmount"></param>
         /// <param name="date"></param>
-        /// <param name="amount"></param>
-        public void AddBuyTransaction(decimal price, Product product, decimal discountAmount, DateTime date, int amount, string comment, string productName, decimal amountOfUnitInThis, int transactionID)
+        /// <param name="amountOfProduct"></param>
+        public void AddProductToMainBuyTransactionOnMakingTransaction(decimal price, Product product, decimal discountAmount, int amountOfProduct, string comment, string productName, decimal amountOfUnitInThis, int transactionID, string typeOfProduct)
         {
-            //TODO make it write to file
             try
             {
-                BuyTransaction transaction = new BuyTransaction(price, product, discountAmount, iD, date, amount, comment, productName, amountOfUnitInThis, transactionID);
-                //TODO make the add transaction be different if it is an insert
-                listOfTransactions.Add(transaction);
+                listOfTransactions.Add(new AddProductToBuyTransaction(price, product, discountAmount, iD, amountOfProduct, comment, productName, amountOfUnitInThis, transactionID));
+                UI.AddProductToMainBuyTransactionTable(iD, transactionID, productName, amountOfProduct, typeOfProduct, discountAmount, price, comment, amountOfUnitInThis);
                 iD++;
-                latestAdded = transaction;
-                StreamWriter streamWriter = new StreamWriter(pathToFile, true);
-                streamWriter.WriteLine(transaction.FileFormat());
-                streamWriter.Close();
             }
-            //TODO Will probably implement this later. Don't know what to put here now
-            catch (Exception)
+            catch
             {
-
+                throw new FormatException("The format of the product is wrong");
             }
         }
         #endregion
-
 
         #region Info
         /// <summary>

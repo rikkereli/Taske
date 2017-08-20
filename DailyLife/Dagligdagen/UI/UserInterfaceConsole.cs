@@ -21,6 +21,43 @@ namespace Dagligdagen
             get { return system; }
         }
 
+        public ListOfProducts ProductList
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ListOfTransactions TransactionList
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ListOfMainTransactions MainTransactionList
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ListOfTransactions TempTransaction
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -151,7 +188,7 @@ namespace Dagligdagen
             Console.WriteLine("Enter comment");
             comment = Console.ReadLine();
 
-            system.listOfTransactions.AddBuyTransaction(price, product, discoundAmount, date, amount, comment, productName, 0, 0);
+           // system.listOfTransactions(price, product, discoundAmount, date, amount, comment, productName, 0, 0);
         }
         /// <summary>
         /// Used to exit program
@@ -352,6 +389,21 @@ namespace Dagligdagen
         public void AddProductMessage()
         {
             Console.WriteLine("Please enter the bought product");
+        }
+
+        public void AddProductToProductTable(int ID, string productName, string typeOfProduct, string typeOfUnit)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddMainBuyTransactionToTransactionTable(int iD, DateTime date, decimal price, string comment, string place)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddProductToMainBuyTransactionTable(int productID, int transactionID, string productName, int amountOfProduct, string typeOfProduct, decimal discountAmount, decimal price, string comment, decimal amountOfUnitInProduct)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

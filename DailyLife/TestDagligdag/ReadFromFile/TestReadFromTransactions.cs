@@ -29,7 +29,7 @@ namespace TestDagligdag
         [TestMethod]
         public void TestIfRightAmountOfLines()
         {
-            List<Product> products = new List<Product>() { new Product(1,"Mælk",UnitType.l,ProductType.Food), new Product(2,"Kage",UnitType.kg,ProductType.Snack)};
+            List<Product> products = new List<Product>() { new Product(1,"Mælk","l", "Food"), new Product(2,"Kage", "kg", "Snack")};
             ListOfProducts listOfProducts = new ListOfProducts(products,null);
             ListOfTransactions transactions =  new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts, null),null);
             Assert.AreEqual(transactions.NumberOfTransactions, 2);
@@ -40,7 +40,7 @@ namespace TestDagligdag
         [TestMethod]
         public void TestIfRightTransactionsIsMade()
         {
-            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", "l", "Food"), new Product(2, "Kage", "kg", "Snack") };
             ListOfProducts listOfProducts = new ListOfProducts(products,null);
 
             ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(validTransactionFileWithTwoTransactions, listOfProducts, null),null);

@@ -320,7 +320,7 @@ namespace Dagligdagen
             try
             {
                 //Here I add the transaction to the list
-                listOfTransactions.Add(new BuyTransaction(price, product, discountAmount, productInTransactionID, transactiondate, amountOfProducts, comment, nameOfProduct, amountOFUnitInProduct, transactionID));
+             //   listOfTransactions.Add(new AddProductToBuyTransaction(price, product, discountAmount, productInTransactionID, transactiondate, amountOfProducts, comment, nameOfProduct, amountOFUnitInProduct, transactionID));
             }
             catch
             {

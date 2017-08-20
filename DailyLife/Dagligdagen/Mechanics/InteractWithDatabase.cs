@@ -51,8 +51,11 @@ namespace Dagligdagen
             }
             catch (SQLiteException ex)
             {
-                Console.WriteLine(ex.Message);
-                //Add your exception code here.
+                throw new FormatException($"The format is invalid {ex.Message}");
+            }
+            catch(Exception)
+            {
+                throw new FormatException("The format is invalid fsr");
             }
             sqlite.Close();
             return dt;

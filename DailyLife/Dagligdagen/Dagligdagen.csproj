@@ -119,20 +119,23 @@
     <Compile Include="DatatableTypes\ProductDatatable.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Elements\MainTransaction.cs" />
-    <Compile Include="MainWindowWpf.xaml.cs">
+    <Compile Include="Elements\MainTransactions\MainBuyTransaction.cs" />
+    <Compile Include="Elements\MainTransactions\MainTransaction.cs" />
+    <Compile Include="Lists\ListOfMainTransactions.cs" />
+    <Compile Include="Wpf\MainWindowWpf.xaml.cs">
       <DependentUpon>MainWindowWpf.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mechanics\InteractWithDatabase.cs" />
     <Compile Include="Mechanics\ParseStringToType.cs" />
     <Compile Include="sql.cs" />
+    <Compile Include="Wpf\SqliteUI.cs" />
     <Compile Include="UI\DailyLifeSystem.cs" />
     <Compile Include="Exceptions\ElementDoesNotExistException.cs" />
     <Compile Include="Exceptions\IDAlreadyTakenException.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
     <Compile Include="Elements\Item.cs" />
     <Compile Include="UI\IUserinterface.cs" />
-    <Compile Include="Lists\List.cs" />
+    <Compile Include="Lists\ListType.cs" />
     <Compile Include="Lists\ListOfProducts.cs" />
     <Compile Include="Lists\ListOfTransactions.cs" />
     <Compile Include="Elements\MenuItem.cs" />
@@ -142,7 +145,7 @@
     <Compile Include="UI\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mechanics\NotUsedNow\ReadFromFiles.cs" />
-    <Compile Include="Elements\BuyTransaction.cs" />
+    <Compile Include="Elements\AddProductToBuyTransaction.cs" />
     <Compile Include="Mechanics\NotUsedNow\TempTestClass.cs" />
     <Compile Include="Elements\AddProductToTransaction.cs" />
     <Compile Include="Enums\UnitType.cs" />
@@ -154,7 +157,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindowWpf.xaml">
+    <Page Include="Wpf\MainWindowWpf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

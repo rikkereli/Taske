@@ -18,7 +18,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfStartProductCountIsZero()
         {
-            ListOfProducts productList = new ListOfProducts(new List<Product>(),new SQLiteConnection("Sti"));
+            ListOfProducts productList = new ListOfProducts(new List<Product>(),null);
             Assert.AreEqual(productList.NumberOfProducts, 0);
         }
         /// <summary>

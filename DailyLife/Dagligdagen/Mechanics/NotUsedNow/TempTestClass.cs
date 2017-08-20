@@ -11,32 +11,32 @@ namespace Dagligdagen
     public delegate void Output(string s);
     class TempTestClass
     {
-        public void TestMakeList()
-        {
-            string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Transactions\\TestTransactionsTwoWithTwoIsRight.txt";
-            string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Products\\TestProductsWithTwoProductsIsRight.txt";
-            string standardDiscardProductFile = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\WriteToProducts\\StandardDiscardProductFile.txt";
-            System.IO.File.WriteAllText(standardDiscardProductFile, string.Empty);
-            ListOfProducts listOfProducts = new ListOfProducts(null);
-            listOfProducts.AddProduct("Mælk", "l", "Food");
-            listOfProducts.AddProduct("Kage", "kg", "Snack");
-            ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts, standardDiscardProductFile), transactionFilePath);
+        //public void TestMakeList()
+        //{
+        //    string transactionFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Transactions\\TestTransactionsTwoWithTwoIsRight.txt";
+        //    string productFilePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\Products\\TestProductsWithTwoProductsIsRight.txt";
+        //    string standardDiscardProductFile = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\TestDokumenter\\WriteToProducts\\StandardDiscardProductFile.txt";
+        //    System.IO.File.WriteAllText(standardDiscardProductFile, string.Empty);
+        //    ListOfProducts listOfProducts = new ListOfProducts(null);
+        //    listOfProducts.AddProduct("Mælk", "l", "Food");
+        //    listOfProducts.AddProduct("Kage", "kg", "Snack");
+        //    ListOfTransactions transactions = new ListOfTransactions(ReadFromFiles.ReadFromTransactionFileToListOfTransactions(transactionFilePath, listOfProducts, standardDiscardProductFile), transactionFilePath);
 
-            List<Product> products = ReadFromFiles.ReadFromProductfileToListOfProducts(productFilePath, standardDiscardProductFile);
-            Console.WriteLine(Product.TableExplanation());
-            Console.WriteLine(System.IO.File.ReadAllText(productFilePath));
+        //    List<Product> products = ReadFromFiles.ReadFromProductfileToListOfProducts(productFilePath, standardDiscardProductFile);
+        //    Console.WriteLine(Product.TableExplanation());
+        //    Console.WriteLine(System.IO.File.ReadAllText(productFilePath));
 
-            Console.WriteLine(System.IO.File.ReadAllText(standardDiscardProductFile));
-            foreach (Product product in products)
-            {
-                Console.WriteLine(product);
-            }
-            Console.WriteLine(AddProductToTransaction.TableExplanation());
-            foreach (AddProductToTransaction transaction in transactions)
-            {
-                Console.WriteLine(transaction);
-            }
-        }
+        //    Console.WriteLine(System.IO.File.ReadAllText(standardDiscardProductFile));
+        //    foreach (Product product in products)
+        //    {
+        //        Console.WriteLine(product);
+        //    }
+        //    Console.WriteLine(AddProductToTransaction.TableExplanation());
+        //    foreach (AddProductToTransaction transaction in transactions)
+        //    {
+        //        Console.WriteLine(transaction);
+        //    }
+        //}
         
         static public void TestIfProgramRuns()
         {

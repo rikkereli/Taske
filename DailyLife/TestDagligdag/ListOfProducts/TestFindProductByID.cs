@@ -17,7 +17,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDWorksByName()
         {
-            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", "l", "Food"), new Product(2, "Kage", "kg", "Snack") };
 
             ListOfProducts productlist = new ListOfProducts(products, null);
 
@@ -32,13 +32,13 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDWorksByProductType()
         {
-            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", "l", "Food"), new Product(2, "Kage", "kg", "Snack") };
 
             ListOfProducts productlist = new ListOfProducts(products,null);
 
             Product foundProduct = productlist.FindProductByID(1);
             //See if the product found is the same as the expected
-            Assert.IsTrue(foundProduct.TypeOfProduct == ProductType.Food);
+            Assert.IsTrue(foundProduct.TypeOfProduct == "Food");
         }
         /// <summary>
         /// Find product by ID should return null if product does not exist
@@ -46,7 +46,7 @@ namespace TestDagligdag
         [TestMethod]
         public void SeeIfProductByIDReturnsNullIfProductDoesNotExist()
         {
-            List<Product> products = new List<Product>() { new Product(1, "Mælk", UnitType.l, ProductType.Food), new Product(2, "Kage", UnitType.kg, ProductType.Snack) };
+            List<Product> products = new List<Product>() { new Product(1, "Mælk", "l", "Food"), new Product(2, "Kage", "kg", "Snack") };
             ListOfProducts productlist = new ListOfProducts(products,null);
 
             Assert.AreEqual(productlist.FindProductByID(1).PrimaryProductName, "Mælk");
