@@ -3,7 +3,6 @@ package com.rikkereli.dailylife;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             {
 
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+
                 LoginActivity.this.startActivity(registerIntent);
             }
         });
@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                                 int age = jsonResponse.getInt("age");
 
                                 Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
+
                                 intent.putExtra("name", name);
                                 intent.putExtra("username", username);
                                 intent.putExtra("age", age);

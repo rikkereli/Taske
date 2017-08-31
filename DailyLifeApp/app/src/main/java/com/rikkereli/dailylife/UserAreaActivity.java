@@ -1,33 +1,39 @@
 package com.rikkereli.dailylife;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.android.volley.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class UserAreaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //Set link between this class and the activity_register
         setContentView(R.layout.activity_user_area);
 
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        final EditText etAge = (EditText) findViewById(R.id.etAge);
-        final TextView welcomeMessage = (TextView) findViewById(R.id.tvWelcomeMessage);
+        final Button bBudget = (Button) findViewById(R.id.bBudget);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String username = intent.getStringExtra("username");
-        //-1 is the default value. Indicates if it was not passed
-        int age = intent.getIntExtra("age", -1);
+        bBudget.setOnClickListener(new View.OnClickListener() {
 
-        String message = name + "welcome to your user area";
-        welcomeMessage.setText(message);
-        etUsername.setText(username);
-        //Empty string converts the int to string, so it can be displayed
-        etAge.setText(age + "");
+            public void onClick(View view) {
+                Intent intent = new Intent(UserAreaActivity.this, BudgetMenuActivity.class);
+                UserAreaActivity.this.startActivity(intent);
+            }
+        });
+
 
     }
 }

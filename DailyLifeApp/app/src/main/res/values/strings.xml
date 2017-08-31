@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DailyLife</string>
+    <string name="title_activity_budget_menu">activity_budget_menu</string>
 </resources>

@@ -29,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final Button bRegister = (Button) findViewById(R.id.bRegister);
 
+
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -37,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String userName = etUserName.getText().toString();
                 final String password = etPassword.getText().toString();
                 final int age =  Integer.parseInt(etAge.getText().toString());
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
