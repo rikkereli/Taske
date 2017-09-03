@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rikkereli.dailylife.LoginActivity">
+    tools:context="com.rikkereli.dailylife.Login.LoginActivity">
 
     <EditText
         android:id="@+id/etUsername"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rikkereli.dailylife.SeeTransactionsActivity">
+    tools:context="com.rikkereli.dailylife.Transactions.SeeMainTransactionsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvTransactions"
@@ -20,6 +20,5 @@
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.461" />
-
 
 </android.support.constraint.ConstraintLayout>

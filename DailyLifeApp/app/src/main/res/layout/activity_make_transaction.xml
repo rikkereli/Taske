@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorLongPressedHighlight"
+    android:clickable="true"
+    tools:context="com.rikkereli.dailylife.MakeTransaction">
+
+    <Button
+        android:id="@+id/bFinish"
+        android:layout_width="144dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="23dp"
+        android:text="Finish"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bSeeAndAddProducts" />
+
+    <TextView
+        android:id="@+id/tvAmountOfMoney"
+        android:layout_width="51dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="20dp"
+        android:text="Price"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMakeTransaction" />
+
+    <TextView
+        android:id="@+id/tvPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="46dp"
+        android:text="Place"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintLeft_toLeftOf="@+id/tvAmountOfMoney"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmountOfMoney" />
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-7dp"
+        android:layout_marginTop="44dp"
+        android:text="Comment"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintLeft_toLeftOf="@+id/tvDateTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateTime" />
+
+    <TextView
+        android:id="@+id/tvDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:text="Date and time"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tvPlace"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlace"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <TextView
+        android:id="@+id/tvProducts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="95dp"
+        android:text="Products"
+        android:textColor="@color/cardview_dark_background"
+        app:layout_constraintLeft_toLeftOf="@+id/tvComment"
+        app:layout_constraintTop_toBottomOf="@+id/tvComment" />
+
+    <TextView
+        android:id="@+id/tvMakeTransaction"
+        android:layout_width="370dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="33dp"
+        android:text="Make buy transaction"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bSeeAndAddProducts"
+        android:layout_width="164dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="0dp"
+        android:text="See and add products"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvProducts" />
+
+    <EditText
+        android:id="@+id/etComment"
+        android:layout_width="213dp"
+        android:layout_height="91dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="0dp"
+        android:elegantTextHeight="false"
+        android:ems="10"
+        android:freezesText="false"
+        android:gravity="top|left"
+        android:hint="Add comment"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        android:textSize="14sp"
+
+        app:layout_constraintLeft_toRightOf="@+id/tvComment"
+        app:layout_constraintTop_toTopOf="@+id/tvComment" />
+
+
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="195dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="Add transaction price"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintLeft_toRightOf="@+id/tvAmountOfMoney"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMakeTransaction" />
+
+    <EditText
+        android:id="@+id/etPlace"
+        android:layout_width="250dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="The location of the transaction"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tvPlace"
+        app:layout_constraintTop_toBottomOf="@+id/etPrice" />
+
+    <Button
+        android:id="@+id/bAddTimeAndDate"
+        android:layout_width="47dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:text="+"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintLeft_toRightOf="@+id/tvDateTime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDateTime" />
+
+    <TextView
+        android:id="@+id/tvDisplayDateAndTime"
+        android:layout_width="125dp"
+        android:layout_height="39dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="0dp"
+        android:text="TextView"
+        app:layout_constraintLeft_toRightOf="@+id/tvDateTime"
+        app:layout_constraintTop_toTopOf="@+id/tvDateTime"
+        tools:text="Choose date and time" />
+
+</android.support.constraint.ConstraintLayout>
