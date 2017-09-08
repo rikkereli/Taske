@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MakeTransaction"
+            android:name=".Transactions.MakeMainTransactionActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
